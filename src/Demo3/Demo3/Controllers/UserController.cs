@@ -21,7 +21,7 @@ namespace Demo3.Controllers
         public IActionResult GetList()
         {
             _logger.LogInformation("test log information");
-            return Ok();
+            return Content("OK");
         }
 
     }
