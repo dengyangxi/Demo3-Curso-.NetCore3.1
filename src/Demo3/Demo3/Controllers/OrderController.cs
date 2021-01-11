@@ -18,7 +18,7 @@ namespace Demo3.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("Init method Index of OrderController");
-            return Ok();
+            return Ok("OK");
         }
     }
 }
