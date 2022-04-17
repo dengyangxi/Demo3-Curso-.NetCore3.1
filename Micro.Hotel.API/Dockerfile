@@ -11,7 +11,7 @@ WORKDIR /src
 COPY ["Micro.Hotel.API.csproj", "./"]
 RUN dotnet restore "./Micro.Hotel.API.csproj"
 COPY . .
-WORKDIR "/src/Micro.Hotel.API"
+WORKDIR "/src/."
 RUN dotnet build "Micro.Hotel.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

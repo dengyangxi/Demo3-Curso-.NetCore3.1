@@ -9,7 +9,7 @@ WORKDIR /src
 COPY ["Micro.Public.API.csproj", "./"]
 RUN dotnet restore "./Micro.Public.API.csproj"
 COPY . .
-WORKDIR "/src/Micro.Public.API"
+WORKDIR "/src/."
 RUN dotnet build "Micro.Public.API.csproj" -c Release -o /app/build
 
 FROM build AS publish

@@ -9,7 +9,7 @@ WORKDIR /src
 COPY ["Micro.Order.API.csproj", "./"]
 RUN dotnet restore "./Micro.Order.API.csproj"
 COPY . .
-WORKDIR "/src/Micro.Order.API"
+WORKDIR "/src/."
 RUN dotnet build "Micro.Order.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
