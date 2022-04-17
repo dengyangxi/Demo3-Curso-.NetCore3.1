@@ -5,6 +5,10 @@ WORKDIR /app
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
+RUN ls
+RUN pwd
+
 WORKDIR /src
 COPY ["Micro.Hotel.API/Micro.Hotel.API.csproj", "Micro.Hotel.API/"]
 RUN dotnet restore "Micro.Hotel.API/Micro.Hotel.API.csproj"
