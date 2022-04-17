@@ -8,8 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
 
 WORKDIR /src
-COPY ["Micro.Hotel.API.csproj", "/"]
-RUN dotnet restore "Micro.Hotel.API.csproj"
+COPY ["Micro.Hotel.API.csproj", "./"]
+RUN dotnet restore "./Micro.Hotel.API.csproj"
 COPY . .
 WORKDIR "/src/Micro.Hotel.API"
 RUN dotnet build "Micro.Hotel.API.csproj" -c Release -o /app/build

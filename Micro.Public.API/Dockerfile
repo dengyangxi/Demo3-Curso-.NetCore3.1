@@ -6,8 +6,8 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Micro.Public.API/Micro.Public.API.csproj", "Micro.Public.API/"]
-RUN dotnet restore "Micro.Public.API/Micro.Public.API.csproj"
+COPY ["Micro.Public.API.csproj", "./"]
+RUN dotnet restore "./Micro.Public.API.csproj"
 COPY . .
 WORKDIR "/src/Micro.Public.API"
 RUN dotnet build "Micro.Public.API.csproj" -c Release -o /app/build
