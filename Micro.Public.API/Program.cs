@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 //Ö¸¶¨±©Â¶¶Ë¿Ú
 builder.WebHost.ConfigureKestrel((context, serverOptions) =>
 {
-    serverOptions.Listen(IPAddress.Loopback, 80);
+   // serverOptions.Listen(IPAddress.Loopback, 80);
+      serverOptions.ListenLocalhost(80);
     //serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
     //{
     //    listenOptions.UseHttps("testCert.pfx", "testPassword");
