@@ -6,7 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Micro.Order.API/Micro.Order.API.csproj", "Micro.Order.API/"]
+RUN ls 
+RUN pwd 
+
+COPY ["Micro.Order.API/Micro.Order.API/Micro.Order.API.csproj", "Micro.Order.API/"]
 RUN dotnet restore "Micro.Order.API/Micro.Order.API.csproj"
 COPY . .
 WORKDIR "/src/Micro.Order.API"
