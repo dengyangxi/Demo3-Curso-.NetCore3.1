@@ -11,7 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Micro.Order.API", "Micro.Or
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Order.API", "Micro.Order.API\Micro.Order.API.csproj", "{96755A63-E948-4F08-A6C3-748A9445EF1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micro.Public.API", "Micro.Public.API\Micro.Public.API.csproj", "{F4EED9C1-E3E8-4C1B-B520-898CC9759656}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Public.API", "Micro.Public.API\Micro.Public.API.csproj", "{F4EED9C1-E3E8-4C1B-B520-898CC9759656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "commonapi", "commonapi\commonapi.csproj", "{A3CC4637-E580-4482-AF24-AC98A3E79136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{F4EED9C1-E3E8-4C1B-B520-898CC9759656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4EED9C1-E3E8-4C1B-B520-898CC9759656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4EED9C1-E3E8-4C1B-B520-898CC9759656}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3CC4637-E580-4482-AF24-AC98A3E79136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3CC4637-E580-4482-AF24-AC98A3E79136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3CC4637-E580-4482-AF24-AC98A3E79136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3CC4637-E580-4482-AF24-AC98A3E79136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
