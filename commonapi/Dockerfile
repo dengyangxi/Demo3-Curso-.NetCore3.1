@@ -8,7 +8,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["commonapi/commonapi.csproj", "commonapi/"]
+#COPY ["commonapi/commonapi.csproj", "commonapi/"]
 RUN dotnet restore "commonapi/commonapi.csproj"
 COPY . .
 WORKDIR "/src/commonapi"
