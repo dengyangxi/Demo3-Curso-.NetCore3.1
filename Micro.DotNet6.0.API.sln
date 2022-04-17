@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Order.API", "Micro.Or
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Public.API", "Micro.Public.API\Micro.Public.API.csproj", "{F4EED9C1-E3E8-4C1B-B520-898CC9759656}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "commonapi", "commonapi\commonapi.csproj", "{7105E136-A392-4ACA-976E-3538512074EF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{F4EED9C1-E3E8-4C1B-B520-898CC9759656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4EED9C1-E3E8-4C1B-B520-898CC9759656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4EED9C1-E3E8-4C1B-B520-898CC9759656}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7105E136-A392-4ACA-976E-3538512074EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7105E136-A392-4ACA-976E-3538512074EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7105E136-A392-4ACA-976E-3538512074EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7105E136-A392-4ACA-976E-3538512074EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
