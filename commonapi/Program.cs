@@ -1,6 +1,20 @@
+using System.Net;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+#if !DEBUG
+//Ö¸¶¨±©Â¶¶Ë¿Ú
+builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+{
+    serverOptions.Listen(IPAddress.Loopback, 80);
+    //serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
+    //{
+    //    listenOptions.UseHttps("testCert.pfx", "testPassword");
+    //});
+});
+#endif
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

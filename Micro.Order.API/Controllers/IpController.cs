@@ -39,10 +39,10 @@ namespace Micro.Order.API.Controllers
         /// 获取服务器信息
         /// </summary>
         /// <returns></returns>
-        private ServerInformationModel ServerInformation()
+        private static ServerInformationModel ServerInformation()
         {
             Process[] p = Process.GetProcesses();//获取进程信息
-            ServerInformationModel model = new ServerInformationModel();
+            var model = new ServerInformationModel();
             Int64 totalMem = 0;
             //string info = "";
             foreach (Process pr in p)
@@ -74,27 +74,27 @@ namespace Micro.Order.API.Controllers
         private class ServerInformationModel
         {
 
-            public string 服务器时间 { get; set; }
-            public string 占用总内存 { get; set; }
+            public string 服务器时间 { get; set; } = "";
+            public string 占用总内存 { get; set; } = "";
 
-            public string 是否是Linux { get; set; }
+            public string 是否是Linux { get; set; } = "";
 
-            public string 是否是OSX { get; set; }
+            public string 是否是OSX { get; set; } = "";
 
-            public string 是否是Windows { get; set; }
-            public string 进程架构 { get; set; }
-            public string 系统架构 { get; set; }
-            public string 系统名称 { get; set; }
-            public string 是否64位操作系统 { get; set; }
+            public string 是否是Windows { get; set; } = "";
+            public string 进程架构 { get; set; } = "";
+            public string 系统架构 { get; set; } = "";
+            public string 系统名称 { get; set; } = "";
+            public string 是否64位操作系统 { get; set; } = "";
 
-            public string CPU_CORE { get; set; }
+            public string CPU_CORE { get; set; } = "";
 
-            public string HostName { get; set; }
-            public string Version { get; set; }
+            public string HostName { get; set; } = "";
+            public string Version { get; set; } = "";
 
-            public string 内存相关 { get; set; }
+            public string 内存相关 { get; set; } = "";
 
-            public string[] 硬盘 { get; set; }
+            public string[] 硬盘 { get; set; } = Array.Empty<string>();
 
             public string? 站点名称 { get; set; }
         }
