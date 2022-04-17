@@ -15,7 +15,7 @@ namespace Micro.Hotel.API.Controllers
                       .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
                       .FirstOrDefault()?.Address.ToString();
 
-            return Ok(new List<string> { ip });
+            return Ok(new List<string> { ip ?? "IP获取失败" });
         }
 
         [HttpGet]
