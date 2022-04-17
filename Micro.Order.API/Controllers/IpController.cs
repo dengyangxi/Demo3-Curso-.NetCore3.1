@@ -67,6 +67,7 @@ namespace Micro.Order.API.Controllers
             model.内存相关 = Environment.WorkingSet.ToString();
             model.硬盘 = Environment.GetLogicalDrives();
 
+            model.站点名称 = System.Reflection.Assembly.GetEntryAssembly()?.GetName().Name;
             return model;
         }
 
@@ -95,6 +96,7 @@ namespace Micro.Order.API.Controllers
 
             public string[] 硬盘 { get; set; }
 
+            public string? 站点名称 { get; set; }
         }
     }
 }
