@@ -6,12 +6,12 @@ EXPOSE 80
 
  
 
-#FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-#WORKDIR /src
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
 ##COPY ["commonapi/commonapi.csproj", "commonapi/"]
 #RUN dotnet restore "commonapi/commonapi.csproj"
-#COPY . .
-#WORKDIR "/src/commonapi"
+COPY . .
+WORKDIR "/src/commonapi"
 #RUN dotnet build "commonapi.csproj" -c Release -o /app/build
 
 FROM build AS publish
