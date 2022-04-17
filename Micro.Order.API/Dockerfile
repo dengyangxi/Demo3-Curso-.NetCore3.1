@@ -9,8 +9,8 @@ WORKDIR /src
 RUN ls 
 RUN pwd 
 
-COPY ["Micro.Order.API/Micro.Order.API/Micro.Order.API.csproj", "Micro.Order.API/"]
-RUN dotnet restore "Micro.Order.API/Micro.Order.API.csproj"
+COPY ["Micro.Order.API.csproj", "/"]
+RUN dotnet restore "/Micro.Order.API.csproj"
 COPY . .
 WORKDIR "/src/Micro.Order.API"
 RUN dotnet build "Micro.Order.API.csproj" -c Release -o /app/build
