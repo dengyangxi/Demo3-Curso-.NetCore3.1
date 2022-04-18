@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Micro.Service.Hotel.API/Micro.Service.Hotel.API.csproj", "Micro.Service.Hotel.API/"]
+COPY ["./Micro.Service.Hotel.API.csproj", "./"]
 RUN dotnet restore "Micro.Service.Hotel.API/Micro.Service.Hotel.API.csproj"
 COPY . .
-WORKDIR "/src/Micro.Service.Hotel.API"
+WORKDIR "/src/."
 RUN dotnet build "Micro.Service.Hotel.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
