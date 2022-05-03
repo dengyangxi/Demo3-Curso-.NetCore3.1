@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Micro.Order.API.Common;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Micro.Order.API.Controllers
 {
@@ -46,7 +47,7 @@ namespace Micro.Order.API.Controllers
                                 OrderID = orderID
                             },
                             Msg = $"请求成功,用户需要获取订单{orderID}的信息"
-                        }
+                        }.ToJsonFormat()
                 );
 
         }

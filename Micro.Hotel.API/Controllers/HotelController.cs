@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Micro.Hotel.API.Common;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Micro.Hotel.API.Controllers
 {
@@ -42,7 +43,7 @@ namespace Micro.Hotel.API.Controllers
                                 HotelCd = hotelCd
                             },
                             Msg = $"请求成功,用户需要获取酒店{hotelCd}的信息"
-                        }
+                        }.ToJsonFormat()
                 );
 
         }

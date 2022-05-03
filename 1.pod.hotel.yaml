@@ -1,1 +1,1 @@
-apiVersion: v1kind: Podmetadata:  name: hotelapi-podspec:  containers:  - name: hotelapi    image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod    ports:    - containerPort: 5005
+apiVersion: v1kind: Podmetadata:  name: hotelapi-podspec:  containers:  - name: hotelapi    # image 拉取策略： Always 总是拉取镜像   Never  只使用本地镜像   IfNotPresent 优先本地，没有则拉取    imagePullPolicy: Always    image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod    ports:    - containerPort: 5005

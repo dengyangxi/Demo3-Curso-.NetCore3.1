@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using Micro.Order.API.Common;
 
 namespace Micro.Order.API.Controllers
 {
@@ -26,14 +27,14 @@ namespace Micro.Order.API.Controllers
 
             //  var json = Newtonsoft.Json.Linq.JValue.Parse(JsonConvert.SerializeObject(model)).ToString(Newtonsoft.Json.Formatting.Indented);
 
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            };
-            var json = JsonSerializer.Serialize(model, options);
+            //var options = new JsonSerializerOptions
+            //{
+            //    WriteIndented = true,
+            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            //};
+            //var json = JsonSerializer.Serialize(model, options);
 
-            return Ok(json);
+            return Ok(model.ToJsonFormat());
         }
         /// <summary>
         /// 获取服务器信息

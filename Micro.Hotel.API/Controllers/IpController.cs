@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using Micro.Hotel.API.Common;
 
 namespace Micro.Hotel.API.Controllers
 {
@@ -26,14 +27,14 @@ namespace Micro.Hotel.API.Controllers
 
             //  var json = Newtonsoft.Json.Linq.JValue.Parse(JsonConvert.SerializeObject(model)).ToString(Newtonsoft.Json.Formatting.Indented);
 
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            };
-            var json = JsonSerializer.Serialize(model, options);
+            //var options = new JsonSerializerOptions
+            //{
+            //    WriteIndented = true,
+            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            //};
+            //var json = JsonSerializer.Serialize(model, options);
 
-            return Ok(json);
+            return Ok(model.ToJsonFormat());
         }
         /// <summary>
         /// 获取服务器信息
@@ -97,6 +98,8 @@ namespace Micro.Hotel.API.Controllers
             public string[] 硬盘 { get; set; } = Array.Empty<string>();
 
             public string? 站点名称 { get; set; }
+
+          
         }
     }
 }
