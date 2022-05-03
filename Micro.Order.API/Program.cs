@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseKestrel(webhost =>
 {
     //实现对特定端口的监控
-    webhost.ListenAnyIP(5005);
+    webhost.ListenAnyIP(5006);
 
     //↓↓↓↓↓↓↓↓↓↓ 各种资源限制↓↓↓↓↓↓↓↓↓↓
 

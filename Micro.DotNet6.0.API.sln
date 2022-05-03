@@ -18,7 +18,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pod", "pod", "{922BF130-AFED-4123-A648-4F076062C75D}"
 	ProjectSection(SolutionItems) = preProject
 		1.pod.hotel.yaml = 1.pod.hotel.yaml
-		2.pod.two.container.yaml = 2.pod.two.container.yaml
+		2.namespace.yaml = 2.namespace.yaml
+		3.pod.two.container.resources.yaml = 3.pod.two.container.resources.yaml
+		4.pod.two.container.livenessProbe.yaml = 4.pod.two.container.livenessProbe.yaml
+		5.pod.two.container.yaml = 5.pod.two.container.yaml
 	EndProjectSection
 EndProject
 Global
