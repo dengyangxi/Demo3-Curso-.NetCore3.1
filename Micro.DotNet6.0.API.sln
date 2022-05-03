@@ -19,6 +19,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Service.Hotel.API", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Yaml", "Yaml", "{9DB1F132-CB6B-434F-A1AD-451C6D2979B5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pod", "pod", "{922BF130-AFED-4123-A648-4F076062C75D}"
+	ProjectSection(SolutionItems) = preProject
+		1.pod.hotel.yaml = 1.pod.hotel.yaml
+		2.pod.two.container.yaml = 2.pod.two.container.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +55,7 @@ Global
 		{B6DE1533-6515-4AAE-B55B-41EAD732DC62} = {F7A6A870-5B01-4916-8A66-C9370E9430E0}
 		{96755A63-E948-4F08-A6C3-748A9445EF1B} = {26505A1F-9896-4C64-B4F9-8D3DE03958BC}
 		{AF9A251B-3007-4F65-82C6-D59C7CC46388} = {FD8E7725-4EB2-4818-9170-53C553EDBF9C}
+		{922BF130-AFED-4123-A648-4F076062C75D} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}
