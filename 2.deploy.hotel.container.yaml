@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotelapi-deployment
+  namespace: homeinns-pms
+  labels:
+    app: hotelapi
+spec:
+  # 部署 2个 pod  即： 2个负载处理用户请求
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotelapi
+  template:
+    metadata:
+      labels:
+        app: hotelapi
+    spec:
+     containers:
+     # 第一个容器
+     - name: hotelapi
+       # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+       imagePullPolicy: Always
+       # 镜像拉取地址
+       image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+       ports:
+       - containerPort: 5005
+       # 容器监控检查  http/tcp 
+       livenessProbe:
+         #通过http方式检查监控状态
+         httpGet:
+               #检查方法
+               path: /Hotel/Index
+               #检查端口
+               port: 5005
+         #告诉 kubelet 启动容器后 3 秒再发起监控检查
+         initialDelaySeconds: 3
+         #告诉 kubelet 每隔 3 秒 进行一次监控检查， 单位/秒，默认10秒
+         periodSeconds: 3
+         #告诉 kubelet 监控检查失败 3 次，重启重启该容器 并且 pod打上未就绪的标签
+         failureThreshold: 3
+         #告诉 kubelet 探测超时后等待1秒再次发起监控检查
+         timeoutSeconds: 1
+         #告诉 kubelet 探测器在失败后，成功1次 则视为容器健康。默认值是 1
+         successThreshold: 1
+           #资源限制
+       #资源限制
+       resources:
+         #最大资源限制
+         limits:
+           #最多 使用1核[CPU]
+           cpu: "1"
+           #最多 使用150Mb[内存] 单位可以是 E, P, T, G, M, K，或者 Ei, Pi, Ti, Gi, Mi, Ki（1024）
+           memory: "150Mi"
+           #最多 使用160Mb[磁盘] 单位可以是 E, P, T, G, M, K，或者 Ei, Pi, Ti, Gi, Mi, Ki（1024）
+           ephemeral-storage: "160Mi"
+         #最小资源限制
+         requests:
+           cpu: "0.1"
+           memory: "50Mi"
+           ephemeral-storage: "60Mi"
+
+
+
+#kubectl describe deployment hotelapi-deployment -n homeinns-pms
+#kubectl describe rs hotelapi-deployment-xxxxxx -n homeinns-pms
+#kubectl describe pod hotelapi-deployment-xxxx -n homeinns-pms
+#kubectl rollout status deployment/hotelapi-deployment -n homeinns-pms
+#kubectl rollout history deployment/hotelapi-deployment -n homeinns-pms
+#kubectl rollout undo deployment/hotelapi-deployment -n homeinns-pms
+#kubectl rollout undo deployment/hotelapi-deployment -n homeinns-pms --to-revision=1
+#kubectl scale deployment/hotelapi-deployment -n homeinns-pms --replicas=3
+#kubectl get deployment hotelapi-deployment -o yaml -n homeinns-pms
+
+
+
+

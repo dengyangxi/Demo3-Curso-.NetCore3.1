@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotelapi-deployment
+  namespace: homeinns-pms
+  labels:
+    app: hotelapi
+spec:
+  # 部署 2个 pod  即： 2个负载处理用户请求
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotelapi
+  template:
+    metadata:
+      labels:
+        app: hotelapi
+    spec:
+     containers:
+     # 第一个容器
+     - name: hotelapi
+       # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+       imagePullPolicy: Always
+       # 镜像拉取地址
+       image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+       ports:
+       - containerPort: 5005
