@@ -18,7 +18,8 @@ namespace Micro.Hotel.API.Controllers
 
 
 
-        [HttpGet(Name = "Index")]
+        [HttpGet]
+        [Route("Index")]
         public IActionResult Index()
         {
             return Ok(new { Data = "结果集..ing", IsError = false, Msg = "请求成功, Hotel Index" });

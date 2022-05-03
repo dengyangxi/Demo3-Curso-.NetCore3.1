@@ -23,6 +23,7 @@ namespace Micro.Order.API.Controllers
 
 
         [HttpGet(Name = "Index")]
+        [Route("Index")]
         public IActionResult Index()
         {
             return Ok(new { Data = "结果集..ing", IsError = false, Msg = "请求成功, Order Index" });
