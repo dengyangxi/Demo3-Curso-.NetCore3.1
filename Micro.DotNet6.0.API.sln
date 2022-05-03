@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Public.API", "Micro.P
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Micro.Service.Hotel.API", "Micro.Service.Hotel.API", "{FD8E7725-4EB2-4818-9170-53C553EDBF9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micro.Service.Hotel.API", "Micro.Service.Hotel.API\Micro.Service.Hotel.API.csproj", "{AF9A251B-3007-4F65-82C6-D59C7CC46388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Service.Hotel.API", "Micro.Service.Hotel.API\Micro.Service.Hotel.API.csproj", "{AF9A251B-3007-4F65-82C6-D59C7CC46388}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Yaml", "Yaml", "{9DB1F132-CB6B-434F-A1AD-451C6D2979B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
