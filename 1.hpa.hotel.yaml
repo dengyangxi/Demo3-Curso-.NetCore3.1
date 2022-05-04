@@ -1,0 +1,25 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hotelapi-hpa
+  namespace: homeinns-pms
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hotelapi-deployment
+  # 最小副本集。 最少pod数量
+  minReplicas: 1
+  # 最大副本及。 最多pod数量
+  maxReplicas: 3
+  metrics:
+  #资源
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        # type： *  有多种指标扩容：
+        # CPU 百分比指标 （type: Utilization averageUtilization: 60 ）
+        # COU 绝对值指标 （type: AverageValue averageValue: 100m）
+        type: AverageValue
+        averageValue: 100m

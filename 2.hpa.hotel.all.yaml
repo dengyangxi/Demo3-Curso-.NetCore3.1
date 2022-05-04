@@ -1,0 +1,67 @@
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hotelapi-hpa
+  namespace: homeinns-pms
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    # 监控的自动伸缩类型
+    kind: Deployment
+    # 监控的自动伸缩类型的名字 （即： Deployment 的名字 ）
+    name: hotelapi-deployment
+  # 最小副本集。 最少pod数量
+  minReplicas: 1
+  # 最大副本及。 最多pod数量
+  maxReplicas: 10
+  #监控资源集
+  metrics:
+  # 监测CPU使用情况 来决定是否扩容
+  - type: Resource
+    resource:
+      # 监控容器cpu 使用情况
+      name: cpu
+      target:
+        # CPU 资源监控： 
+        #  (平均指标 百分比： type: AverageUtilization  averageUtilization: 60 ）
+        #  (         百分比： type: Utilization averageUtilization: 60 ）
+        #  (         绝对值： type: AverageValue averageValue: 500m）
+        type: AverageUtilization
+        # 大于60 触发扩容-数据来源自：metrics-server
+        averageUtilization: 60
+  # 监测内存使用情况 来决定是否扩容
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        # CPU 资源百分比指标监控
+        type: AverageUtilization
+        # 大于60 触发扩容-数据来源自：metrics-server
+        averageUtilization: 60
+  # 监测 Pod 的流量 来决定是否扩容
+  - type: Pods
+    pods:
+      metric:
+        # 监控流量指标
+        name: packets-per-second
+      target:
+        # 监控流量值
+        type: AverageValue
+        # 当pod流量大于 1000/qps 之后扩容 -数据来源自：metrics-server
+        averageValue: 1k
+  # 监测 Ingress 的流量 来决定是否扩容
+  - type: Object
+    object:
+      metric:
+        # 监控流量指标
+        name: requests-per-second
+      describedObject:
+        apiVersion: networking.k8s.io/v1
+        #监控资源类型
+        kind: Ingress
+        name: main-route
+      target:
+        #监控值
+        kind: Value
+        #当流量大于 10000/qps 之后扩容 -数据来源自：metrics-server
+        value: 10k
