@@ -24,12 +24,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.pod", "1.pod", "{922BF130
 		5.pod.two.container.yaml = 5.pod.two.container.yaml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.service", "2.service", "{1469BE78-2027-4EBC-9055-0740BEC59280}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.service", "3.service", "{1469BE78-2027-4EBC-9055-0740BEC59280}"
+	ProjectSection(SolutionItems) = preProject
+		1.service.hotel.yaml = 1.service.hotel.yaml
+		2.service.hotel.nodeport.yaml = 2.service.hotel.nodeport.yaml
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.deployment", "3.deployment", "{AC641C69-2B69-4DE9-8F80-1E5E65226E2F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.deployment", "2.deployment", "{AC641C69-2B69-4DE9-8F80-1E5E65226E2F}"
 	ProjectSection(SolutionItems) = preProject
 		1.deploy.hotel.yaml = 1.deploy.hotel.yaml
 		2.deploy.hotel.container.yaml = 2.deploy.hotel.container.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.ingress", "4.ingress", "{60193563-244B-4F1F-89D2-34C6EEDDCF7E}"
+	ProjectSection(SolutionItems) = preProject
+		1.ingress.hotel.nginx.yaml = 1.ingress.hotel.nginx.yaml
+		2.ingress.hotel.nginx.ssl.yaml = 2.ingress.hotel.nginx.ssl.yaml
 	EndProjectSection
 EndProject
 Global
@@ -60,6 +70,7 @@ Global
 		{922BF130-AFED-4123-A648-4F076062C75D} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 		{1469BE78-2027-4EBC-9055-0740BEC59280} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 		{AC641C69-2B69-4DE9-8F80-1E5E65226E2F} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{60193563-244B-4F1F-89D2-34C6EEDDCF7E} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}

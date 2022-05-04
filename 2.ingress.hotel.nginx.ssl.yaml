@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hotelapi-ingress
+  namespace: homeinns-pms
+  annotations:
+   kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+     - hotelapi.cloudhotels.cn
+    secretName: cloudhotels-ssecret
+  rules:
+  #第一个 域名解析映射到 service
+  - host: hotelapi.cloudhotels.cn
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+              name: hotelapi-service
+              port:
+                  number: 5005
+
+
+
+
+# kubectl create secret tls cloudhotels-ssecret -- cert=hotelapi.cloudhotels.cn.pem --key=hotelapi.cloudhotels.cn.pem
+
+
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+# name: hotelapi-ingress
+#spec:
+# tls:
+# - hosts:
+#    - hotelapi.cloudhotels.cn
+#   secretName: cloudhotels-ssecret
+# rules:
+# - host: hotelapi.cloudhotels.cn
+#   http:
+#    paths:
+#    - path: "/"
+#      pathType: Prefix
+#      backend:
+#       service:
+#        name: hotelapi-service
+#        port:
+#         number: 5005
+
+
+
