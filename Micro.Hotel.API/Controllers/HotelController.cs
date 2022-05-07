@@ -10,6 +10,10 @@ namespace Micro.Hotel.API.Controllers
 
         private readonly ILogger<HotelController> _logger;
 
+        /// <summary>
+        /// IOC 依赖注入 ILogger
+        /// </summary>
+        /// <param name="logger"></param>
         public HotelController(ILogger<HotelController> logger)
         {
             _logger = logger;
@@ -48,7 +52,27 @@ namespace Micro.Hotel.API.Controllers
                 );
 
         }
-         
+
+
+
+
+        [HttpGet]
+        [Route("Log")]
+        public IActionResult Log(string msg = "")
+        {
+            msg = msg ?? "请求了一个寂寞";
+
+            // #TODU 业务日志
+            _logger.LogInformation($"请求日志Info：{msg}");
+            _logger.LogError($"请求日志Error：{msg}");
+            _logger.LogWarning($"请求日志Warning：{msg}");
+
+
+            //#TODU 业务代码
+
+
+            return Ok(new { Data = "Log日志..ing", IsError = false, Msg = "请求成功, Hotel Log" });
+        }
          
     }
 }
