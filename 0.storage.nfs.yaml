@@ -1,0 +1,46 @@
+
+
+# 查看容器内部 /data/hello.txt 文件夹内容
+kubectl exec hotelapi-emptydir-pod  -c hotelapi -n homeinns-pms -- cat /data/hello.txt
+
+
+
+
+
+
+# 查看容器内部文件列表
+kubectl exec hotelapi-hostpath-pod -n homeinns-pms -- ls /data
+#进入容器命令
+kubectl exec -it hotelapi-hostpath-pod -n homeinns-pms /bin/sh
+#查看文件
+ls /tmp
+
+
+
+
+
+
+
+
+# 部署NFS 文件系统
+yum install nfs-utils -y #每个Node上都要安装nfs-utils包
+#master 编辑/etc/exports 文件，并写入 分布式文件系统路径
+vi /etc/exports 
+/tmp/pms *(rw,fsid=0,no_root_squash) 
+#创建文件夹
+mkdir -p /tmp/pms
+#启动NFS服务
+systemctl start nfs 
+#开机自动启动NFS服务
+systemctl enable nfs 
+
+
+vi /tmp/pms/index.html/a.html
+#查看pod
+kubectl get pod -n homeinns-pms
+#查看容器内部文件
+kubectl exec  hotelapi-nfs-deployment-yyy-xxxx  -n homeinns-pms -- ls /usr/share/nginx/html
+
+curl 10.244.36.244/a.html
+
+

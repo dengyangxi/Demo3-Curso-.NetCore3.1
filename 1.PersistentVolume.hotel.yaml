@@ -1,0 +1,28 @@
+apiVersion: v1 
+kind: PersistentVolume 
+metadata: 
+ name: hotelapi-pv 
+ namespace: homeinns-pms 
+ labels:
+   app: hotelapipv
+spec: 
+   capacity: 
+     # 分配存储空间 1G
+     storage: 1Gi 
+   #存储模式
+   accessModes: 
+   # accessModes 节点取值范围：
+   #   1.ReadWriteOnce（RWO）：读写权限，但是只能被单个节点挂载 
+   #   2.ReadOnlyMany （ROX）：只读权限，可以被多个节点挂载 
+   #   3.ReadWriteMany（RWX）：读写权限，可以被多个节点挂载 
+   - ReadWriteMany 
+   # 回收策略
+   # Retain（保留）： 保留数据，需要管理员手工清理数据 
+   # Recycle（回收）：清除 PV 中的数据，等同执行 rm -rf /tmp/pms/* 
+   # Delete（删除）：与 PV 相连的后端存储同时删除 
+   persistentVolumeReclaimPolicy: Delete
+   nfs: 
+    # 文件路径
+    path: /tmp/pms 
+    # 分布式文件系统的服务地址 （可以是Http网址 或者 IP地址）
+    server: 192.168.10.129

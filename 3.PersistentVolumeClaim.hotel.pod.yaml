@@ -1,0 +1,26 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+ name: hotelapi-pod-pvc
+ namespace: homeinns-pms
+spec: 
+   #restartPolicy：  Always 容器失效则重启 ， OnFailure  退出码不为0时则重启   ，  Never  不管结果如何都不重启 
+   restartPolicy: Never
+   containers: 
+   - name: hotelapi 
+     # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+     imagePullPolicy: Always
+     image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+     ports: 
+     - containerPort: 5005 
+     volumeMounts: 
+     - name: www 
+       mountPath: /app/wwwroot
+   volumes: 
+   - name: www 
+     persistentVolumeClaim: 
+      claimName: hotelapi-pvc
+
+
+
+ 

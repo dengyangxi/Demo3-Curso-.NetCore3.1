@@ -1,0 +1,12 @@
+
+
+
+#查看PV 信息
+  kubectl get pv -n homeinns-pms
+# PVSTATUS（状态）： 
+#   Available   （可用）    ：表示可用状态，还未被任何 PVC 绑定 
+#   Bound       （已绑定）  ：表示 PV 已经被 PVC 绑定 
+#   Released    （已释放）  ：PVC 被删除，但是资源还未被集群重新声明 
+#   Failed      （失败）    ：表示该 PV 的自动回收失败
+
+

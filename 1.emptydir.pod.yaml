@@ -3,32 +3,6 @@ kind: Pod
 metadata: 
  name: hotelapi-emptydir-pod 
  namespace: homeinns-pms
-spec: 
- containers: 
- - name: writeinfo 
-   image: centos 
-   command: ["bash","-c","for i in {1..100};do echo $i >> /data/hello;sleep 1;done"] 
-   volumeMounts: 
-   - name: data 
-     mountPath: /data 
- - name: readinfo
-   image: centos 
-   command: ["bash","-c","tail -f /data/hello"] 
-   volumeMounts: 
-   - name: data 
-     mountPath: /data 
- volumes: 
- - name: data 
-   emptyDir: {} 
-
-
-
----
-apiVersion: v1 
-kind: Pod 
-metadata: 
- name: hotelapi-emptydir-pod 
- namespace: homeinns-pms
 spec:
   #restartPolicy：  Always 容器失效则重启 ， OnFailure  退出码不为0时则重启   ，  Never  不管结果如何都不重启 
   restartPolicy: Never

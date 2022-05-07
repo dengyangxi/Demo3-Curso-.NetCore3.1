@@ -1,0 +1,28 @@
+apiVersion: apps/v1 
+kind: Deployment 
+metadata: 
+ name: hotelapi-nfs-deployment
+ namespace: homeinns-pms 
+spec: 
+ selector: 
+  matchLabels: 
+   app: nginx 
+ replicas: 3 
+ template: 
+  metadata: 
+   labels: 
+    app: nginx 
+  spec: 
+   containers: 
+   - name: nginx 
+     image: nginx 
+     volumeMounts: 
+     - name: wwwroot 
+       mountPath: /usr/share/nginx/html 
+     ports: 
+     - containerPort: 80 
+   volumes: 
+   - name: wwwroot 
+     nfs: 
+      server: 192.168.10.129 
+      path: /tmp/pms
