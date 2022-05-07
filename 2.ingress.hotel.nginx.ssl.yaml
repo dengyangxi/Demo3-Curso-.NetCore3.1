@@ -25,7 +25,7 @@ spec:
 
 
 
-
+# Ìí¼Ó tls ÕıÊ½
 # kubectl create secret tls cloudhotels-ssecret -- cert=hotelapi.cloudhotels.cn.pem --key=hotelapi.cloudhotels.cn.pem
 
 

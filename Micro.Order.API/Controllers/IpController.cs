@@ -12,9 +12,11 @@ namespace Micro.Order.API.Controllers
     {
         public ActionResult Get()
         {
-            var ip = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces().Select(p => p.GetIPProperties()).SelectMany(p => p.UnicastAddresses)
-                      .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
-                      .FirstOrDefault()?.Address.ToString();
+            var ip = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
+                .Select(p => p.GetIPProperties())
+                .SelectMany(p => p.UnicastAddresses)
+                .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
+                .FirstOrDefault()?.Address.ToString();
 
             return Ok(new List<string> { ip ?? "IP获取失败" });
         }

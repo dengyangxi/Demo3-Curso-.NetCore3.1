@@ -26,7 +26,7 @@ spec:
         #  (平均指标 百分比： type: AverageUtilization  averageUtilization: 60 ）
         #  (         百分比： type: Utilization averageUtilization: 60 ）
         #  (         绝对值： type: AverageValue averageValue: 500m）
-        type: AverageUtilization
+        type: Utilization
         # 大于60 触发扩容-数据来源自：metrics-server
         averageUtilization: 60
   # 监测内存使用情况 来决定是否扩容
@@ -34,10 +34,9 @@ spec:
     resource:
       name: memory
       target:
-        # CPU 资源百分比指标监控
-        type: AverageUtilization
-        # 大于60 触发扩容-数据来源自：metrics-server
-        averageUtilization: 60
+        averageValue: 60Mi		#内存占用 mem：60
+        type: AverageValue
+
   # 监测 Pod 的流量 来决定是否扩容
   - type: Pods
     pods:

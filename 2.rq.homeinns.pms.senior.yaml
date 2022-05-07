@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: List
+items:
+# （重要等级： 高） high 的 pod
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: homeinns-pms-pods-high
+    namespace: homeinns-pms
+  spec:
+    hard:
+      #CPU的需求
+      cpu: "1000"
+      #内存的需求
+      memory: 300Mi
+      #限制Pod数量
+      pods: "6"
+    #作用域选择器
+    scopeSelector:
+      matchExpressions:
+      # operator 的取值范围：  In 、NotIn 、 Exists、 DoesNotExist
+      # 1. operator 是 In 或 NotIn 之一，则 values 字段不能为空
+      # 2. operator 为 Exists 或 DoesNotExist，则不可以设置 values 字段
+      - operator : In 
+        #选择类型
+        scopeName: PriorityClass
+        # 获取重要等级为 high 的 pod。  
+        values: ["high"]
+# （重要等级： 中） medium 的 pod
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: homeinns-pms-pods-medium
+    namespace: homeinns-pms
+  spec:
+    hard:
+      #CPU的需求
+      requests.cpu: "600"
+      #内存的需求
+      requests.memory: 150Mi
+      #限制Pod数量
+      pods: "4"
+    #作用域选择器
+    scopeSelector:
+      matchExpressions:
+      # operator 的取值范围：  In 、NotIn 、 Exists、 DoesNotExist
+      # 1. operator 是 In 或 NotIn 之一，则 values 字段不能为空
+      # 2. operator 为 Exists 或 DoesNotExist，则不可以设置 values 字段
+      - operator : In
+        #选择类型
+        scopeName: PriorityClass
+        # 获取重要等级为 medium 的 pod。  （重要等级： 中）
+        values: ["medium"]
+# （重要等级： 低） low 的 pod
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: homeinns-pms-pods-low
+    namespace: homeinns-pms
+  spec:
+    hard:
+      #限制CPU最大用量
+      limits.cpu: "100"
+      #限制内存最大用量
+      limits.memory: 100Mi
+      #限制Pod数量
+      pods: "2"
+    scopeSelector:
+    #作用域选择器
+      matchExpressions:
+      # operator 的取值范围：  In 、NotIn 、 Exists、 DoesNotExist
+      # 1. operator 是 In 或 NotIn 之一，则 values 字段不能为空
+      # 2. operator 为 Exists 或 DoesNotExist，则不可以设置 values 字段
+      - operator : In
+        #选择类型
+        scopeName: PriorityClass
+        # 获取重要等级为 low 的 pod。  （重要等级： 低）
+        values: ["low"]

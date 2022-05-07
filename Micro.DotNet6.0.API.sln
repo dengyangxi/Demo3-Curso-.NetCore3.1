@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.pod", "1.pod", "{922BF130
 		2.namespace.yaml = 2.namespace.yaml
 		3.pod.two.container.resources.yaml = 3.pod.two.container.resources.yaml
 		4.pod.two.container.livenessProbe.yaml = 4.pod.two.container.livenessProbe.yaml
-		5.pod.two.container.yaml = 5.pod.two.container.yaml
+		5.pod.two.container.senior.yaml = 5.pod.two.container.senior.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.service", "3.service", "{1469BE78-2027-4EBC-9055-0740BEC59280}"
@@ -45,7 +45,27 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.horizontalPodAutoscaler", "5.horizontalPodAutoscaler", "{C58BA7AB-71CA-4359-A6CE-54B4833B26DF}"
 	ProjectSection(SolutionItems) = preProject
 		1.hpa.hotel.yaml = 1.hpa.hotel.yaml
-		2.hpa.hotel.all.yaml = 2.hpa.hotel.all.yaml
+		2.hpa.hotel.senior.yaml = 2.hpa.hotel.senior.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.ResourceQuota", "6.ResourceQuota", "{B187012A-7A28-46C6-956C-D959EEA77E01}"
+	ProjectSection(SolutionItems) = preProject
+		1.rq.homeinns.pms.yaml = 1.rq.homeinns.pms.yaml
+		2.rq.homeinns.pms.senior.yaml = 2.rq.homeinns.pms.senior.yaml
+		3.rq.homeinns.pms.senior.tenant.yaml = 3.rq.homeinns.pms.senior.tenant.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.Schedule", "7.Schedule", "{C2827D1E-00FA-43E9-BF1C-CCA17BB8FF90}"
+	ProjectSection(SolutionItems) = preProject
+		0.node.labels.taint.yaml = 0.node.labels.taint.yaml
+		1.schedule.pod.yaml = 1.schedule.pod.yaml
+		2.schedule.pod.affinity.yaml = 2.schedule.pod.affinity.yaml
+		3.schedule.pod.tolerations.yaml = 3.schedule.pod.tolerations.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.Storage", "8.Storage", "{AD05F81A-A93A-41D3-BBCD-02A79C616157}"
+	ProjectSection(SolutionItems) = preProject
+		1.emptydir.pod.yaml = 1.emptydir.pod.yaml
 	EndProjectSection
 EndProject
 Global
@@ -78,6 +98,9 @@ Global
 		{AC641C69-2B69-4DE9-8F80-1E5E65226E2F} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 		{60193563-244B-4F1F-89D2-34C6EEDDCF7E} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 		{C58BA7AB-71CA-4359-A6CE-54B4833B26DF} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{B187012A-7A28-46C6-956C-D959EEA77E01} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{C2827D1E-00FA-43E9-BF1C-CCA17BB8FF90} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{AD05F81A-A93A-41D3-BBCD-02A79C616157} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}

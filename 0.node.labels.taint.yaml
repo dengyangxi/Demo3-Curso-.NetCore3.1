@@ -1,0 +1,36 @@
+﻿
+
+
+#   taint
+
+
+#### ↓↓↓ Node节点污点标记 （taint） ↓↓↓
+#其中[effect] 可取值：
+# NoSchedule ：一定不能被调度 （不会再有新Pod进来）。 
+# PreferNoSchedule：尽量不要调度。 
+# NoExecute：不仅不会调度，还会驱逐Node上已有的Pod，驱除的Pod会转移到其他节点 (一般用来节点替换)。  
+# 禁止 Master 节点部署pod
+kubectl taint nodes k8s-master(master节点名称) node-role.kubernetes.io/master=true:NoSchedule
+kubectl taint nodes nodename special=true:PreferNoSchedule
+#删除 污点
+kubectl taint node [node] key:[effect]-NoSchedule
+#### ↑↑↑ Node节点污点标记 （taint） ↑↑↑
+
+
+
+
+
+# label
+
+
+#### ↓↓↓ Node节点打标签 （label） ↓↓↓
+#打 标签
+kubectl label nodes k8s-node1 team=pms
+#显示所有节点的标签
+kubectl get node --show-labels
+#删除标签( 注意后面有 -)
+kubectl label node k8snode1 team-
+#修改Label的值
+#语法: 需要加上--overwrite参数
+kubectl label nodes k8s-node1 team=pms --overwrite
+#### ↑↑↑ Node节点打标签 （label）  ↑↑↑

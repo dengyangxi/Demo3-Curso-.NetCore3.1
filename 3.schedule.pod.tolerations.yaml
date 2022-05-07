@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotelapi-deployment
+  namespace: homeinns-pms
+  labels:
+    app: hotelapi
+spec:
+  # 部署 2个 pod  即： 2个负载处理用户请求
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotelapi
+  template:
+    metadata:
+      labels:
+        app: hotelapi
+    spec:
+     containers:
+     # 第一个容器
+     - name: hotelapi
+       # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+       imagePullPolicy: Always
+       # 镜像拉取地址
+       image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+       ports:
+       - containerPort: 5005
+     # 容忍度
+     tolerations:
+     - key: "team"
+       # operator 取值方位 In、NotIn、Exists、DoesNotExist、Gt、Lt
+       operator: "Equal"
+       value: "pms"
+       # 污点可取值： NoSchedule 、PreferNoSchedule 、NoExecute
+       effect: "NoExecute"
+       # 延时迁移 30秒
+       # Pod 正在运行,同时一个匹配的污点被添加到其所在的节点, 那么 Pod 还将继续在节点上运行 30 秒。
+       tolerationSeconds: 30

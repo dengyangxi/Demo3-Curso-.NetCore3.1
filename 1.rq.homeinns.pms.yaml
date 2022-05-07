@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: homeinns-pms-pods-rq
+  namespace: homeinns-pms
+spec:
+  hard:
+    #限制CPU
+    limits.cpu: "1000"
+    #限制内存
+    limits.memory: 300Mi
+    #限制Pod数量
+    pods: "3"
+  #范围
+  scopes:
+    # BestEffort： 匹配所有 Qos 是 BestEffort 的 Pod。     （容器必须没有任何内存或者 CPU 的限制或请求）
+    # NotBestEffort： 匹配所有 Qos 不是 BestEffort 的 Pod。
+    # Burstable ： Pod 里至少有一个容器有内存或者 CPU 请求且不满足 Guarantee 等级的要求，即内存/CPU 的值设置的不同。
+    # Guaranteed ： Pod 里的每个容器都必须有内存/CPU 限制和请求，而且值必须相等。如果一个容器只指明limit而未设定request，则request的值等于limit值。
+    - NotBestEffort
+  #作用域选择器
+  scopeSelector:
+    matchExpressions:
+    # operator 的取值范围：  In 、NotIn 、 Exists、 DoesNotExist
+    # 1. operator 是 In 或 NotIn 之一，则 values 字段不能为空
+    # 2. operator 为 Exists 或 DoesNotExist，则不可以设置 values 字段
+    - operator : In 
+      #作用域类型取值范围： Terminating、NotTerminating、NotBestEffort 和 PriorityClass
+      #
+      scopeName: PriorityClass
+      # 获取重要等级为 high 的 pod。  
+      values: ["high"]

@@ -1,0 +1,54 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+ name: hotelapi-emptydir-pod 
+ namespace: homeinns-pms
+spec: 
+ containers: 
+ - name: writeinfo 
+   image: centos 
+   command: ["bash","-c","for i in {1..100};do echo $i >> /data/hello;sleep 1;done"] 
+   volumeMounts: 
+   - name: data 
+     mountPath: /data 
+ - name: readinfo
+   image: centos 
+   command: ["bash","-c","tail -f /data/hello"] 
+   volumeMounts: 
+   - name: data 
+     mountPath: /data 
+ volumes: 
+ - name: data 
+   emptyDir: {} 
+
+
+
+---
+apiVersion: v1 
+kind: Pod 
+metadata: 
+ name: hotelapi-emptydir-pod 
+ namespace: homeinns-pms
+spec:
+  #restartPolicy：  Always 容器失效则重启 ， OnFailure  退出码不为0时则重启   ，  Never  不管结果如何都不重启 
+  restartPolicy: Never
+  containers:
+  #第一个容器
+  - name: hotelapi
+    # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+    imagePullPolicy: Always
+    image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+    # 执行 命令 写入一个文件
+    command: ["bash","-c","for i in {1..100};do echo $i >> /data/hotel.txt;mkdir /data/hotel_log;sleep 1;done"] 
+    ports:
+    - containerPort: 5005
+    # 磁盘卷
+    volumeMounts: 
+         #磁盘卷名称
+         - name: data 
+           # 文件路径
+           mountPath: /data 
+  # 映射到容器内部 磁盘卷
+  volumes: 
+    - name: data 
+      emptyDir: {} 

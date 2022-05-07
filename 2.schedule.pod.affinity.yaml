@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotelapi-deployment
+  namespace: homeinns-pms
+  labels:
+    app: hotelapi
+spec:
+  # 部署 2个 pod  即： 2个负载处理用户请求
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hotelapi
+  template:
+    metadata:
+      labels:
+        app: hotelapi
+    spec:
+     containers:
+     # 第一个容器
+     - name: hotelapi
+       # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+       imagePullPolicy: Always
+       # 镜像拉取地址
+       image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+       ports:
+       - containerPort: 5005
+
+     # Node 节点选择器- 亲和性调度
+     # NodeAffinity规则 ：
+     #  1.如果同时定义了nodeSelector和nodeAffinity，那么必须两个条 件都得到满足，Pod才能最终运行在指定的Node上。 
+     #  2.如果nodeAffinity指定了多个nodeSelectorTerms，那么其中一个 能够匹配成功即可。 
+     #  3.如果在nodeSelectorTerms中有多个matchExpressions，则一个节 点必须满足所有matchExpressions才能运行该Pod。
+     affinity:
+      nodeAffinity:
+       requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: team
+            # operator 取值方位 In、NotIn、Exists、DoesNotExist、Gt、Lt
+            operator: In
+            values:
+            - pms
+            - crs
+            
