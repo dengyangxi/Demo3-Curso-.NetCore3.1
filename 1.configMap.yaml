@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hotelapi-config-map
+  namespace: homeinns-pms
+data:
+  # 类属性键: Key / Value  键值对
+  ASPNETCORE_ENVIRONMENT: "Prod"
+  SYSTEM_LOG_FILE_PATH: "/app/data/log"
+
+  # 类文件键
+  custom.workerThreads: |
+    workerThreads.default =minWorker,minWorker
+    workerThreads.custom =maxWorker,maxWorker
+  custom-interface.properties: |
+    interface.type=pms
+    interface.version=1

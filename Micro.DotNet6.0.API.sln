@@ -77,9 +77,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9.PV-PVC-StorageClass", "9.
 		1.PersistentVolume.hotel.yaml = 1.PersistentVolume.hotel.yaml
 		2.PersistentVolumeClaim.hotel.yaml = 2.PersistentVolumeClaim.hotel.yaml
 		3.PersistentVolumeClaim.hotel.pod.yaml = 3.PersistentVolumeClaim.hotel.pod.yaml
+		4.a.StorageClass.NFS.RABC.yaml = 4.a.StorageClass.NFS.RABC.yaml
+		4.b.StorageClass.hotel.deploy.yaml = 4.b.StorageClass.hotel.deploy.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapr.Yaml", "Dapr.Yaml", "{1B728591-8028-4023-BB37-62BA360EFEB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a10.ConfigMap", "a10.ConfigMap", "{8589EDD3-BC9D-45E4-AC2B-4F7F91694701}"
+	ProjectSection(SolutionItems) = preProject
+		1.configMap.yaml = 1.configMap.yaml
+		2.configMap.pod.yaml = 2.configMap.pod.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a11.Secret", "a11.Secret", "{A9938399-3098-4A9E-B3AF-EBCC646A58EA}"
+	ProjectSection(SolutionItems) = preProject
+		1.Secret.yaml = 1.Secret.yaml
+		2.Secret.pod.yaml = 2.Secret.pod.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a12.ServiceAccount", "a12.ServiceAccount", "{B43B8422-01E3-4FED-8797-203A8BE246F9}"
+	ProjectSection(SolutionItems) = preProject
+		1.ServiceAccount.yaml = 1.ServiceAccount.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a13.RABC", "a13.RABC", "{68A9C112-8AE6-4AC3-B2C7-24FEEDB0C7A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +136,10 @@ Global
 		{C2827D1E-00FA-43E9-BF1C-CCA17BB8FF90} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 		{AD05F81A-A93A-41D3-BBCD-02A79C616157} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 		{4279ACD2-3969-437C-A4F4-0FC4D532105C} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{8589EDD3-BC9D-45E4-AC2B-4F7F91694701} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{A9938399-3098-4A9E-B3AF-EBCC646A58EA} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{B43B8422-01E3-4FED-8797-203A8BE246F9} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
+		{68A9C112-8AE6-4AC3-B2C7-24FEEDB0C7A7} = {9DB1F132-CB6B-434F-A1AD-451C6D2979B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}

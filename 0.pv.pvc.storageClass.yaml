@@ -10,3 +10,16 @@
 #   Failed      （失败）    ：表示该 PV 的自动回收失败
 
 
+
+
+# StorageClass 
+#  K8s需要安装插件支持NFS动态供给功能。 
+#  github 项目开源地址：https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner 
+
+#添加 helm 镜像 
+ helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+
+# 使用 helm 方式 安装k8s 依赖 nfs-subdir 
+helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
+    --set nfs.server=192.168.10.129 \
+    --set nfs.path=/data/nfs_data

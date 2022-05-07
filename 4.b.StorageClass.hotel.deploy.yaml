@@ -1,0 +1,42 @@
+apiVersion: v1 
+kind: PersistentVolumeClaim 
+metadata: 
+   # PVC 的名称
+   name: hotelapi-pvc-nfs
+   # PVC 所属命名空间
+   namespace: homeinns-pms
+spec: 
+   storageClassName: "nfs-client" 
+   #存储模式
+   accessModes: 
+   # accessModes 节点取值范围：
+   #   1.ReadWriteOnce（RWO）：读写权限，但是只能被单个节点挂载 
+   #   2.ReadOnlyMany （ROX）：只读权限，可以被多个节点挂载 
+   #   3.ReadWriteMany（RWX）：读写权限，可以被多个节点挂载 
+   - ReadWriteMany 
+   resources: 
+      requests: 
+         storage: 1Gi 
+
+
+
+--- 
+apiVersion: v1 
+kind: Pod 
+metadata: 
+   name: hotelapi-pvc-sc-pod
+   namespace: homeinns-pms 
+spec: 
+   containers: 
+   - name: hotelapi-pvc-sc-c
+     image: nginx 
+     volumeMounts: 
+     - name: nfs-pvc 
+       mountPath: "/usr/share/nginx/html" 
+
+   #文件系统映射
+   volumes: 
+   - name: nfs-pvc 
+     persistentVolumeClaim: 
+      # 选择对应的PVC名称
+      claimName: hotelapi-pvc-nfs

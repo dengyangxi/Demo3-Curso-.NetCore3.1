@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hotelapi-config-map-pod
+  namespace: homeinns-pms
+spec:
+  containers:
+    - name: hotelapi
+      image: alpine
+      command: ["sleep", "3600"]
+      env:
+        # 定义环境变量，提供给POD 的环境变量名称(并非 ConfigMap 的键)
+        - name: ASPNETCORE_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              #  ConfigMap 的名字
+              name:  hotelapi-config-map
+              # 需要取值的键
+              key: ASPNETCORE_ENVIRONMENT 
+        # 定义环境变量，提供给POD 的环境变量名称(并非 ConfigMap 的键)
+        - name: SYSTEM_LOG_FILE_PATH
+          valueFrom:
+            configMapKeyRef:
+              #  ConfigMap 的名字
+              name: hotelapi-config-map
+              # 需要取值的键
+              key: SYSTEM_LOG_FILE_PATH
+      volumeMounts:
+      - name: config
+        mountPath: "/config"
+        readOnly: true
+  volumes:
+    # 你可以在 Pod 级别设置卷，然后将其挂载到 Pod 内的容器中
+    - name: config
+      configMap:
+        # 提供你想要挂载的 ConfigMap 的名字
+        name: hotelapi-config-map
+        # 来自 ConfigMap 的一组键，将被创建为文件
+        items:
+        - key: "custom.workerThreads"
+          path: "custom.workerThreads.json"
+        - key: "custom-interface.properties"
+          path: "custom-interface.properties.json"
