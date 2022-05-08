@@ -1,0 +1,29 @@
+#查看pod的环境变量
+kubectl exec hotelapi-config-map-pod  -n homeinns-pms -- env
+
+#查看容器文件列表：ls
+kubectl exec hotelapi-config-map-pod  -n homeinns-pms -- ls /config
+
+#查看文件内容：cat
+ kubectl exec -it hotelapi-config-map-pod  -n homeinns-pms -- cat config/custom.workerThreads.json
+ kubectl exec -it hotelapi-config-map-pod  -n homeinns-pms -- cat config/custom-interface.properties.json
+
+
+  
+
+# https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands  
+# ↓↓↓↓↓ Pod内部文件 ---》  复制到本地(Node)  ↓↓↓↓↓
+#将远程 pod 的 /config 复制到本地的 /tmp/config文件夹。  （pod ---> 本地）---注：容器内需要有 tar 命令
+kubectl exec -n homeinns-pms hotelapi-config-map-pod -- tar cf - /tmp/config | tar xf - -C /config
+#将远程 pod 的 /config 复制到本地的 /tmp/config文件夹。   （Pod ---> 本地）
+kubectl cp homeinns-pms/hotelapi-config-map-pod:config /tmp/config
+
+# ↓↓↓↓↓ 复制到本地(Node) ---》  Pod内部文件  ↓↓↓↓↓
+#将本地目录 /tmp/config 复制到 pod 中的 /config文件夹当中。  （本地----> Pod ）---注：容器内需要有 tar 命令
+tar cf - /tmp/config | kubectl exec -i -n homeinns-pms hotelapi-config-map-pod -- tar xf - -C /config
+#将本地目录 /tmp/config 复制到 pod 中的 /config 文件夹。（ 本地----> Pod ）
+kubectl cp /tmp/config hotelapi-config-map-pod:config -n homeinns-pms
+#将本地目录 /tmp/config 复制到 pod 指定的容器 /config文件夹当中 （ 本地----> Pod   -c ）
+kubectl cp /tmp/config hotelapi-config-map-pod:config -c hotelapi -n homeinns-pms
+#将本地目录 /tmp/config 复制到 pod 中的 /config   （ 本地----> Pod ）
+kubectl cp /tmp/config homeinns-pms/hotelapi-config-map-pod:/config

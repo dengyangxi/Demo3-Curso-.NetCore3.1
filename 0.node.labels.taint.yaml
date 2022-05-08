@@ -14,6 +14,7 @@ kubectl taint nodes k8s-master(master节点名称) node-role.kubernetes.io/maste
 kubectl taint nodes nodename special=true:PreferNoSchedule
 #删除 污点
 kubectl taint node [node] key:[effect]-NoSchedule
+
 #### ↑↑↑ Node节点污点标记 （taint） ↑↑↑
 
 

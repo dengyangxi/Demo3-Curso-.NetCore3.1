@@ -85,6 +85,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapr.Yaml", "Dapr.Yaml", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a10.ConfigMap", "a10.ConfigMap", "{8589EDD3-BC9D-45E4-AC2B-4F7F91694701}"
 	ProjectSection(SolutionItems) = preProject
+		0.configmap.yaml = 0.configmap.yaml
 		1.configMap.yaml = 1.configMap.yaml
 		2.configMap.pod.yaml = 2.configMap.pod.yaml
 	EndProjectSection

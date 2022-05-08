@@ -1,5 +1,6 @@
 ﻿using Micro.Hotel.API.Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Micro.Hotel.API.Controllers
 {
@@ -26,6 +27,7 @@ namespace Micro.Hotel.API.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
+
             return Ok(new { Data = "结果集..ing", IsError = false, Msg = "请求成功, Hotel Index" });
         }
 
@@ -60,7 +62,7 @@ namespace Micro.Hotel.API.Controllers
         [Route("Log")]
         public IActionResult Log(string msg = "")
         {
-            msg = msg ?? "请求了一个寂寞";
+           
 
             // #TODU 业务日志
             _logger.LogInformation($"请求日志Info：{msg}");
@@ -73,6 +75,6 @@ namespace Micro.Hotel.API.Controllers
 
             return Ok(new { Data = "Log日志..ing", IsError = false, Msg = "请求成功, Hotel Log" });
         }
-         
+
     }
 }
