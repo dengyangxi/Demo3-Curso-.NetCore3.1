@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # 集群角色名称
+  name: pms-cluster-role
+  #注： ClusterRole 不属于任何 ns ,因此不需要设置 namespace
+
+rules:
+- apiGroups: [""]
+# 赋予角色的资源清单
+  # 可以设置很多资源的权限 比如： secrets 、 services 、 pods  、 deployments  、 jobs  、 nodes  、 rolebindings  、clusterroles 、 configmaps 等等等...ing 
+  #                        也可以设置 资源下的子属性权限  比如 ： pods/status 、  pods/log
+  resources: ["services","deployments","pods"]
+  # 赋予角色的权限清单  ["get", "list", "watch", "create", "update", "patch", "delete"]
+  verbs: ["get","create","list"]

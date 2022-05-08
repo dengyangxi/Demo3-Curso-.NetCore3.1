@@ -1,0 +1,98 @@
+
+#↓↓↓↓↓↓↓↓  移除默认使用 管理员访问 k8s, 将管理员移交给当前root账户 ，  并添加普通用户测试访问。↓↓↓↓↓↓↓↓
+# 1. 打开环境 环境变量文件
+vi /etc/profile
+# 2. 将默认使用管理员访问的 环境变量注释掉
+export KUBECONFIG=/etc/kubernetes/admin.conf  
+# 3. 刷新环境变量
+source /etc/profile
+# 4. 创建配置文件
+mkdir -p $HOME/.kube
+# 5. 移动配置文件
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+# 6. 修改文件权限
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# 7. 添加Linux用户
+useradd user-dyx
+# 8. 切换成 上门创建的用户
+su  user-dyx
+# 9.使用新用户访问集群
+kubectl get pod -A
+
+# SSL
+cd /usr/bin
+wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64
+
+## 改名，给执行权限
+mv cfssl_linux-amd64 cfssl
+mv cfssljson_linux-amd64 cfssljson
+mv cfssl-certinfo_linux-amd64 cfssl-certinfo
+#赋予权限
+chmod +x *
+
+#创建文件夹用来存储SSL证书
+mkdir /usr/local/user-dyx
+cd /usr/local/user-dyx
+# 编辑文件
+vi user-dyx-k8s-csr.json
+
+#写入内容
+{
+  "CN": "pms",
+  "hosts": [], 
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+   },
+  "names": [
+    {
+       "C": "CN",
+       "L": "ShangHai",
+       "O": "Ctyun",
+       "ST": "ShangHai",
+       "OU": "System"
+    }
+  ]
+}
+
+cd /etc/kubernetes/pki/
+#生产自签证书
+cfssl gencert -ca=ca.crt -ca-key=ca.key -profile=kubernetes /usr/local/user-dyx/user-dyx-k8s-csr.json | cfssl json -bare user-dyx
+ls
+#绑定用户信息至kubeconfig中
+kubectl config set-cluster kubernetes --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs=true --server=https://192.168.10.129:6443 --kubeconfig=user-dyx.kubeconfig
+ls
+ #绑定证书
+ kubectl config set-credentials pms-role \
+ --client-certificate=/etc/kubernetes/pki/user-dyx.pem \
+ --client-key=/etc/kubernetes/pki/user-dyx-key.pem \
+ --embed-certs=true \
+ --kubeconfig=user-dyx.kubeconfig
+ # 将角色 和 上下文对象绑定
+kubectl config set-context kubernetes \
+ --cluster=kubernetes \
+ --user=pms-role \
+ --namespace=homeinns-pms \
+ --kubeconfig=user-dyx.kubeconfig
+
+#将授权config文件拷贝到目录
+mkdir -p /home/user-dyx/.kube
+cp user-dyx.kubeconfig /home/user-dyx/.kube/config
+cd /home/user-dyx/.kube/
+ls
+config
+
+## 修改文件所有者
+cd /home/user-dyx/
+#赋予权限
+chown -R user-dyx:user-dyx .kube/
+
+
+
+
+ #======================================================
+ #查看上下文配置信息
+ kubectl config use-context kubernetes --kubeconfig=config

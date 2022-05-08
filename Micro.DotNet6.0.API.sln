@@ -105,6 +105,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a12.ServiceAccount", "a12.S
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a13.RABC", "a13.RABC", "{68A9C112-8AE6-4AC3-B2C7-24FEEDB0C7A7}"
+	ProjectSection(SolutionItems) = preProject
+		0.rabc.yaml = 0.rabc.yaml
+		2.role.yaml = 2.role.yaml
+		3.roleBinding.yaml = 3.roleBinding.yaml
+		4.clusterRole.yaml = 4.clusterRole.yaml
+		5.clusterRoleBinding.yaml = 5.clusterRoleBinding.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
