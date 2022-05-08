@@ -94,11 +94,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a11.Secret", "a11.Secret", 
 	ProjectSection(SolutionItems) = preProject
 		1.Secret.yaml = 1.Secret.yaml
 		2.Secret.pod.yaml = 2.Secret.pod.yaml
+		3.Secret.ali.registry.yaml = 3.Secret.ali.registry.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a12.ServiceAccount", "a12.ServiceAccount", "{B43B8422-01E3-4FED-8797-203A8BE246F9}"
 	ProjectSection(SolutionItems) = preProject
+		0.sa.rabc.secret.yaml = 0.sa.rabc.secret.yaml
 		1.ServiceAccount.yaml = 1.ServiceAccount.yaml
+		4.Secret.ali.registry.deploy.yaml = 4.Secret.ali.registry.deploy.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "a13.RABC", "a13.RABC", "{68A9C112-8AE6-4AC3-B2C7-24FEEDB0C7A7}"

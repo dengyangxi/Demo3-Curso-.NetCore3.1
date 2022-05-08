@@ -1,4 +1,9 @@
 apiVersion: v1
+#资源类型。 
 kind: Namespace
 metadata:
+ #命名空间的名字
+ #    每个namespace创建时都会自动创建一个default service account，  ServiceAccount 的权限局限在 namespace 内
  name: homeinns-pms
+
+  
