@@ -8,6 +8,17 @@ metadata:
 spec:
   # 部署 2个 pod  即： 2个负载处理用户请求
   replicas: 2
+  # 等待就绪时间 默认：0/秒
+  minReadySeconds: 5
+  # 滚动更新策略
+  strategy: 
+    roollingUpdate: 
+      # 升级过程当中 额外启动pod数量。（注：确保拥有足够的资源）
+      maxSurge: 33%
+      # 升级过程当中 最多不可用Pod数量。 （支持绝对值&百分比）
+      maxUnavailable: 1
+    # 升级策略
+    type: RollingUpdate
   selector:
     matchLabels:
       app: hotelapi
@@ -58,7 +69,7 @@ spec:
          requests:
            cpu: "0.1"
            memory: "50Mi"
-           ephemeral-storage: "60Mi"
+           ephemeral-storage: "60Mi" 
      # Pod 的重要级别： 即 "low"、"medium"、"high"
      #priorityClassName: high
 
