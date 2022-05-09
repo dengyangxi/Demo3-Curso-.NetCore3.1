@@ -34,6 +34,7 @@ namespace Micro.Hotel.API.Controllers
 
         [HttpGet]
         [Route("GetHotel")]
+
         public IActionResult GetHotel(string hotelCd = "")
         {
 

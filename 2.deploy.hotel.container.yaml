@@ -12,7 +12,7 @@ spec:
   minReadySeconds: 5
   # 滚动更新策略
   strategy: 
-    roollingUpdate: 
+    rollingUpdate: 
       # 升级过程当中 额外启动pod数量。（注：确保拥有足够的资源）
       maxSurge: 33%
       # 升级过程当中 最多不可用Pod数量。 （支持绝对值&百分比）

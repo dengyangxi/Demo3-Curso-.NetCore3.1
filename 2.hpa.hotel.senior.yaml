@@ -28,13 +28,13 @@ spec:
         #  (         绝对值： type: AverageValue averageValue: 500m）
         type: Utilization
         # 大于60 触发扩容-数据来源自：metrics-server
-        averageUtilization: 60
+        averageUtilization: 90
   # 监测内存使用情况 来决定是否扩容
   - type: Resource
     resource:
       name: memory
       target:
-        averageValue: 60Mi		#内存占用 mem：60
+        averageValue: 150Mi		#内存占用 mem：150
         type: AverageValue
 
   # 监测 Pod 的流量 来决定是否扩容
@@ -47,20 +47,22 @@ spec:
         # 监控流量值
         type: AverageValue
         # 当pod流量大于 1000/qps 之后扩容 -数据来源自：metrics-server
-        averageValue: 1k
+        averageValue: 0.1k
   # 监测 Ingress 的流量 来决定是否扩容
-  - type: Object
-    object:
-      metric:
-        # 监控流量指标
-        name: requests-per-second
-      describedObject:
-        apiVersion: networking.k8s.io/v1
-        #监控资源类型
-        kind: Ingress
-        name: main-route
-      target:
-        #监控值
-        kind: Value
-        #当流量大于 10000/qps 之后扩容 -数据来源自：metrics-server
-        value: 10k
+  #- type: Object
+  #  object:
+  #    metric:
+  #      # 监控流量指标
+  #      name: requests-per-second
+  #    describedObject:
+  #      apiVersion: networking.k8s.io/v1
+  #      #监控资源类型
+  #      kind: Ingress
+  #      name: main-route
+  #    target:
+  #      # 监控流量值
+  #      type: AverageValue
+  #      #监控值
+  #      kind: Value
+  #      #当流量大于 10000/qps 之后扩容 -数据来源自：metrics-server
+  #      value: 10k

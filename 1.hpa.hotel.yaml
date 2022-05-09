@@ -6,7 +6,9 @@ metadata:
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
+    # 监控的自动伸缩类型
     kind: Deployment
+    # 监控的自动伸缩类型的名字 （即： Deployment 的名字 ）
     name: hotelapi-deployment
   # 最小副本集。 最少pod数量
   minReplicas: 1

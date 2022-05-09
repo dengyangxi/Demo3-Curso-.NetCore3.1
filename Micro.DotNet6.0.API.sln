@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.deployment", "2.deploymen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.ingress", "4.ingress", "{60193563-244B-4F1F-89D2-34C6EEDDCF7E}"
 	ProjectSection(SolutionItems) = preProject
+		0.ingress.yaml = 0.ingress.yaml
 		1.ingress.hotel.nginx.yaml = 1.ingress.hotel.nginx.yaml
 		2.ingress.hotel.nginx.ssl.yaml = 2.ingress.hotel.nginx.ssl.yaml
 	EndProjectSection
