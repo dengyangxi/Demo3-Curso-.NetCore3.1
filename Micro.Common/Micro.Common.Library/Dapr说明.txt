@@ -1,0 +1,70 @@
+﻿// 0. 直接通过边车方法
+ http://localhost:3500/v1.0/invoke/<app-id>/method/<方法路径>
+
+// 1. (Http)启动   并注入 Dapr SidCar    Http
+
+dapr run --dapr-http-port <sidcar边车端口> --app-port <myapp端口> -app-id=<app-id名称>  dotnet <xxxxx.web.api.dll> --app-ssl
+//Http通讯案例：
+dapr run --dapr-http-port 3500 --app-port 5005 --app-id hotelapi dotnet .\bin\Debug\net6.0\Micro.Hotel.API.dll --app-ssl
+
+dapr run --dapr-http-port 3501 --app-port 5006 --app-id hotelapi dotnet .\bin\Debug\net6.0\Micro.Order.API.dll 
+
+
+dapr run --dapr-http-port 3500 --app-port 5005 --app-id hotelapi dotnet C:\Users\Dyx\source\repos\Micro.DotNet6.0.API\Micro.Hotel.API\bin\Debug\net6.0\Micro.Hotel.API.dll --app-ssl
+
+dapr run --dapr-http-port 3501 --app-port 5006 --app-id orderapi dotnet C:\Users\Dyx\source\repos\Micro.DotNet6.0.API\Micro.Order.API\bin\Debug\net6.0\Micro.Order.API.dll --app-ssl
+
+
+
+// 2. (Grpc)启动   并注入 Dapr SidCar    Grpc 
+//Grpc 通讯案例：
+dapr run --dapr-http-port 3500 --app-port 5005 --app-id hotelapi  dotnet .\bin\Debug\net6.0\Micro.Order.API.dll 
+
+dapr run --dapr-http-port 3501 --app-port 5006 --app-id orderapi  --app-protocol grpc  dotnet .\bin\Debug\net6.0\Micro.Order.API.dll --app-ssl
+
+
+dapr run --dapr-http-port 3500 --app-port 5005 --app-id hotelapi  dotnet C:\Users\Dyx\source\repos\Micro.DotNet6.0.API\Micro.Hotel.API\bin\Debug\net6.0\Micro.Hotel.API.dll --app-ssl
+
+dapr run --dapr-http-port 3501 --app-port 5006 --app-id orderapi  --app-protocol grpc  --app-protocol http dotnet C:\Users\Dyx\source\repos\Micro.DotNet6.0.API\Micro.Order.API\bin\Debug\net6.0\Micro.Order.API.dll --app-ssl
+
+
+
+//调试
+daprd -dapr-http-port 3500 -app-port 5005 -app-id hotelapi -placement-host-address localhost:6050 -components-path C:\Users\Dyx\.dapr\components
+daprd -dapr-http-port 3501 -app-port 5006 -app-id orderapi -placement-host-address localhost:6050 -components-path C:\Users\Dyx\.dapr\components
+
+
+
+
+
+Dapr ： 6大模块。(其实是7个模块，还有一个是提供扩展的模块，一般用不着)
+Service Invocation		服务调用
+Publish & Subscribe		发布和订阅
+Secret Management		秘密管理
+Input/Output Bindings	输入/输出绑定
+State Management		状态管理
+Virtual Actors			Actor模型
+
+
+
+RabbitMq 安装 (此处提供快速安装步骤):
+一、拉镜像，主要需要带manage的管理版本
+docker pull docker.io/rabbitmq:3.10.1-management
+二、启动  (镜像id 你可以通过 docker images查看)
+docker run --name rabbitmq -d -p 15672:15672 -p 5672:5672 镜像id
+注意：（rabbitmq: http://localhost:15672/ 默认账号 guest 密码 guest ） ↓如下步骤不执行也可以 ↓
+三、授权 
+1、进入docke容器内部
+docker exec -i -t 容器id bin/bash
+2、添加账号:(账号：pms , 密码是： homeinns)
+abbitmqctl add_user pms homeinns
+3、账号授权-给与管理员权限
+rabbitmqctl set_permissions -p / pms "." "." ".*"
+rabbitmqctl set_user_tags pms administrator
+4、查看
+rabbitmqctl list_users
+5、退出即可登录
+ 
+
+
+docker run kafka

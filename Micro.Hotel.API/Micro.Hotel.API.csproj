@@ -1,31 +1,56 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\Demo3</DockerfileContext>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\Demo3</DockerfileContext>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="NLog.config" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Remove="NLog.config" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Remove="C:\Users\Dyx\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="C:\Users\Dyx\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="nlog.config" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="nlog.config" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
-    <PackageReference Include="NLog" Version="4.7.15" />
-    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<!-- 开始 -->
+		<PackageReference Include="Dapr.Actors" Version="1.7.0" />
+		<PackageReference Include="Dapr.Actors.AspNetCore" Version="1.7.0" />
+		<PackageReference Include="Dapr.AspNetCore" Version="1.7.0" />
+		<PackageReference Include="Dapr.Client" Version="1.7.0" />
+		<PackageReference Include="Dapr.Extensions.Configuration" Version="1.7.0" />
+		<PackageReference Include="Google.Protobuf" Version="3.20.1" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.46.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.46.1">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<Protobuf Include="GrpcProtos\OrderProtobuf.proto" GrpcServices="Client" />
+		<!-- 结束 -->
+		
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
+		<PackageReference Include="NLog" Version="5.0.0" />
+		<PackageReference Include="NLog.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Micro.Common\Micro.Common.Library\Micro.Common.Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Common\" />
+	</ItemGroup>
+  
 
 </Project>

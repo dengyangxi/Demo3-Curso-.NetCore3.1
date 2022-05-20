@@ -1,18 +1,23 @@
 ﻿using Micro.Order.API.Common;
 using Microsoft.AspNetCore.Mvc;
+using Micro.Common.Library;
+using Micro.Common.Library.Entitys;
 
 namespace Micro.Order.API.Controllers
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class OrderController : ControllerBase
+    public class OrderController : MicroBaseAPIController
     {
 
         private readonly ILogger<OrderController> _logger;
 
         /// <summary>
-        /// IOC 容器 依赖注入
+        /// DI 容器 依赖注入
         /// </summary>
         /// <param name="logger"></param>
         public OrderController(ILogger<OrderController> logger)
@@ -26,30 +31,41 @@ namespace Micro.Order.API.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            return Ok(new { Data = "结果集..ing", IsError = false, Msg = "请求成功, Order Index" });
+            return Success("来自 Micro.Order.API 结果集..ing", "请求成功, Micro.Order.API 微服务的 Order/Index 方法");
+
         }
 
 
-        [HttpGet]
-        [Route("GetOrder")]
-        public IActionResult GetOrder(string orderID = "")
+        /// <summary>
+        ///   获取订单详细信息
+        /// </summary>
+        /// <param name="hotelcd">酒店编号</param>
+        /// <param name="orderID">订单编号</param>
+        /// <returns></returns>
+        [HttpPost("GetOrder")]
+
+        public IActionResult GetOrder(OrderInfoRequest request)
         {
 
-            orderID = orderID ?? "R00008880000888";
+            return Success<OrderInfoModel>(new OrderInfoModel()
+            {
+                GuestMobile = "13888888888",
+                GuestName = "菜徐坤",
+                OrderID = request.OrderID,
+                RoomInfo = new List<RoomInfoModel>()
+                {
+                     new RoomInfoModel (){
+                             RmNo ="8888",
+                             RmType="普通标间"
+                     },
+                       new RoomInfoModel (){
+                             RmNo ="999",
+                             RmType="普通双人房"
+                     },
+                }
+            }, $"请求成功,用户需要获取订单{request.OrderID}的信息");
 
-            return Ok(
-                        new
-                        {
-                            IsError = false,
-                            Data = new
-                            {
-                                GuestMobile = "13888888888",
-                                GuestName = "菜徐坤",
-                                OrderID = orderID
-                            },
-                            Msg = $"请求成功,用户需要获取订单{orderID}的信息"
-                        }.ToJsonFormat()
-                );
+            //.ToJsonFormat()
 
         }
 

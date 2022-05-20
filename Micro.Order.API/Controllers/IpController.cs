@@ -1,40 +1,47 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Text.Json;
+using System.Runtime.InteropServices; 
 using Micro.Order.API.Common;
+using Micro.Common.Library;
 
 namespace Micro.Order.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IpController : ControllerBase
+    public class IpController : MicroBaseAPIController
     {
-        public ActionResult Get()
+        /// <summary>
+        /// 获取 服务器(容器)的IP地址
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetIP")]
+        public ActionResult GetIP()
         {
             var ip = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
                 .Select(p => p.GetIPProperties())
                 .SelectMany(p => p.UnicastAddresses)
                 .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
                 .FirstOrDefault()?.Address.ToString();
-
-            return Ok(new List<string> { ip ?? "IP获取失败" });
+            if (ip is null)
+            {
+                //未能获取到IP地址
+                return Failed<string>("未能获取到服务器(容器)的IP地址");
+            }
+            //成功 获取到服务器(容器)的IP地址
+            return Success(ip);
         }
 
+
+        /// <summary>
+        /// 获取 服务器(容器) 系统基本信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Route("Hello")]
-        public ActionResult Hello()
+        [Route("SystemInfo")]
+        public ActionResult SystemInfo()
         {
-            var model = ServerInformation();
-
-            //  var json = Newtonsoft.Json.Linq.JValue.Parse(JsonConvert.SerializeObject(model)).ToString(Newtonsoft.Json.Formatting.Indented);
-
-            //var options = new JsonSerializerOptions
-            //{
-            //    WriteIndented = true,
-            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            //};
-            //var json = JsonSerializer.Serialize(model, options);
+            var model = ServerInformation(); 
 
             return Ok(model.ToJsonFormat());
         }
@@ -55,7 +62,7 @@ namespace Micro.Order.API.Controllers
             }
             model.服务器时间 = DateTime.Now.ToString("yyyy-MM-dd HH:MM:ss");
             //   list.Add(info);
-            model.占用总内存 = (totalMem / 1024) + "M";
+            model.占用总内存 = (totalMem / 1024.0) + "M";
             //   list.Add("判断是否为Windows Linux OSX");
             model.是否是Linux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux).ToString();
             model.是否是OSX = RuntimeInformation.IsOSPlatform(OSPlatform.OSX).ToString();

@@ -1,0 +1,49 @@
+# 2. Publish & Subscribe 发布和订阅。 
+# 我这里列了一些常用的配置，更新pub-sub 信息请参考官方文档: https://docs.dapr.io/zh-hans/reference/components-reference/supported-pubsub/
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: redis-pubsub-component
+  namespace: homeinns-pms
+spec:
+  # pubsub 中间件类型支持 10余种中间件： pubsub.kafka  、pubsub.rabbitmq 、pubsub.redis 、 pubsub.mqtt 、 pubsub.natsstreaming 等等++...ing
+  # 此处使用Redis 状态存储中间件
+  type: pubsub.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    # Redis 连接地址(如果多个地址使用英文逗号隔开 ",")
+    value: localhost:6379
+
+  - name: redisPassword
+    # Redis 连接密码
+    value: ""
+
+  - name: consumerID
+    # 消费组ID
+    value: pms-pubsub-group
+
+  - name: enableTLS
+    # 如果Redis实例支持使用公共证书的TLS，可以配置为启用或禁用。 默认值为 "false"
+    value: false
+
+  - name: redisDB
+    # 选择redis的第几个数据库  如果“redisType”是“cluster”(集群)，则忽略此选项。默认值为 "0".
+    value: 0
+
+  - name: concurrency
+    # 处理消息的并发工作进程数。默认为“10”。
+    value: 20
+
+  - name: redisType
+    #  redis的类型。有两个有效值，一个是单节点模式的“node”，另一个是redis群集模式的“cluster”。默认为“node”。
+    value: node
+
+  - name: redisMaxRetries
+    # 当命令失败，重试多少次。默认情况下，不会重试失败的命令。  配合 redisMinRetryInterval 一起使用
+    value: 3
+ 
+  - name: redisMinRetryInterval
+    # redis最小重试间隔时间，默认 8ms ,如果设置为 -1 不间隔。  配合 redisMaxRetries 一起使用
+    value: 30ms
+

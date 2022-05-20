@@ -1,4 +1,7 @@
 using System.Net;
+using System.Text;
+using Micro.Common.Library;
+using Micro.Order.API.OrderService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseKestrel(webhost =>
 {
     //实现对特定端口的监控
-    webhost.ListenAnyIP(5006);
+    //  webhost.ListenAnyIP(5006);
+
+    webhost.ConfigureHttpsDefaults(config =>
+    {
+        //忽略SSL证书
+        //   config.ClientCertificateMode = Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.AllowCertificate;
+    });
 
     //↓↓↓↓↓↓↓↓↓↓ 各种资源限制↓↓↓↓↓↓↓↓↓↓
 
@@ -33,23 +42,65 @@ builder.WebHost.UseKestrel(webhost =>
 });
 
 
-builder.Services.AddControllers();
+// 注册： 控制器  和 注册  DAPR  
+builder.Services.AddControllers().AddDapr();
+
+// 注册： Grpc
+builder.Services.AddGrpc();
+
+var basePath = AppContext.BaseDirectory;
+
+//注入配置文件
+builder.Services.AddSingleton(new Appsettings(basePath));
+
+//启动跨域策略
+builder.Services.AddCors();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//加载编码 字符串格式
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.Urls.Add("https://localhost:5006");
+
+app.UseHttpsRedirection();
+
+
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseAuthorization();
 
 app.MapControllers();
 
+//将 订单服务 映射到 Grpc 服务，暴露终结点 Grpc Service Endpoint 。
+//      IEndpointRouteBuilder  GrpcServiceEndpointConventionBuilder 与 服务关联。
+app.MapGrpcService<OrderService>();
+
+
+//中间件委托添加到应用程序的请求管道中...
+app.Use((context, next) =>
+{
+    //HttpRequest。正文可以被多次读取...
+    context.Request.EnableBuffering();
+    return next();
+});
+
+// 开启订阅
+app.MapSubscribeHandler();
+
+//app.Urls.Add("https://localhost:5006");
 
 app.Run();

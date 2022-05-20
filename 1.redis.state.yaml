@@ -1,0 +1,48 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  # 状态存储名称
+  name: redis-statestore-componet
+  # 命名空间
+  namespace: homeinns-pms
+spec:
+  # state 中间件类型支持 20余种中间件： state.redis，state.mysql , state.sqlserver, state.mongodb, state.postgresql  等等++...ing
+  # 此处使用Redis 状态存储中间件
+  type: state.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    # Redis 连接地址(如果多个地址使用英文逗号隔开 ",")
+    value: localhost:6379
+
+  - name: redisPassword
+    # Redis 连接密码
+    value: ""
+
+  - name: enableTLS
+    # 如果Redis实例支持使用公共证书的TLS，可以配置为启用或禁用。 默认值为 "false"
+    value: false
+    
+  - name: failover
+    # 启用故障转移配置的属性。需要设置 sentinalMasterName。默认是"false"
+    value: false
+    
+  - name: sentinelMasterName
+    # Redis哨兵主机名. 默认是 ""
+    value: ""
+    
+  - name: maxRetries
+    # 最大重试次数 。默认值是 3
+    value: 5
+    
+  - name: maxRetryBackoff
+    # 每次重试之间的最小间隔时间。默认为2秒
+    value: 2
+ 
+  - name: actorStateStore
+    #是否将此状态存储给 Actor 使用。 默认值为 "false"
+    value: true
+
+  - name: consumerID
+    # 消费组ID
+    value: "pms-state-group"

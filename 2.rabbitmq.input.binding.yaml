@@ -1,0 +1,43 @@
+# 3. Secret Management        秘密管理。
+# 我这里列了一些常用的配置，更多bindings 信息请参考官方文档: https://docs.dapr.io/zh-hans/reference/components-reference/supported-bindings/rabbitmq/
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  #输入绑定
+  name: api/Binding/InputBindingMessage
+  namespace: homeinns-pms
+spec:
+  # bindings 中间件类型支持 30余种中间件： bindings.kafka  、bindings.rabbitmq 、bindings.redis 、 bindings.mqtt 、 bindings.mysql 等等++...ing . 
+  # 注：绑定2种，输入绑定	输出绑定,请注意是否支持参考： https://docs.dapr.io/zh-hans/reference/components-reference/supported-bindings/）
+  # 此处使用RabbitMQ 状态存储中间件
+  type: bindings.rabbitmq
+  version: v1
+  metadata:
+  - name: queueName 
+    # RabbitMQ 队列名称 	
+    value: dapr.queue.inputbinding.hotelmessage
+  - name: host
+    # RabbitMQ 主机地址:amqp://[username][:password]@host.domain[:port]
+    value: amqp://guest:guest@localhost:5672
+  - name: durable
+    # 告诉RabbitMQ在存储器中持久化消息。默认值为 : false  (不持久化)
+    value: true
+  - name: deleteWhenUnused
+    # 启用或禁用自动删除.默认值为 : false
+    value: true
+  - name: ttlInSeconds
+    # 将默认消息时间设置为在RabbitMQ队列级别生存。 如果此参数为空，消息将不会过期，继续在队列上存在，直到处理完毕。  单位/秒
+    value: 600
+  - name: prefetchCount
+    # 如果此参数为空，QOS 会设置为0为无限制。
+    # RabbitMQ提供了一种qos（服务质量保证）功能，即在非自动确认消息的前提下，如果一定数目的消息（通过基于consume或者channel设置Qos的值）未被确认前，不进行消费新的消息。
+    # 消费确认模式必须是非自动ACK机制（这个是使用baseQos的前提条件，否则会Qos不生效），然后设置basicQos的值；另外，还可以基于consume和channel的粒度进行设置（global）；
+    # 参考： http://www.rabbitmq.com/consumer-prefetch.html           https://www.rabbitmq.com/confirms.html#channel-qos-prefetch
+    value: 0
+  - name: exclusive
+    # 确定主题是否为独占主题。默认值为： false
+    value: false
+  - name: maxPriority
+    # 如果此参数为空，消息将不会过期，继续在队列上存在，直到处理完毕。 取值： 1 and 255。建议使用 1 到 10 之间的值。 
+    # 详情 参考： https://www.rabbitmq.com/priority.html
+    value: 5

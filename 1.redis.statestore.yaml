@@ -1,0 +1,24 @@
+# 3. Secret Management        秘密管理。
+# 我这里列了一些常用的配置，更新pub-sub 信息请参考官方文档: https://docs.dapr.io/zh-hans/reference/components-reference/supported-state-stores/
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: redis-statestore-component
+  namespace: homeinns-pms
+spec:
+  # statestore 中间件类型支持 20余种中间件： state.redis 、 state.mysql 、 state.sqlserver 等等++...ing
+  # 此处使用Redis 状态存储中间件
+  type: state.redis
+  version: v1
+  metadata:
+  - name: redisHost
+    # Redis 连接地址(如果多个地址使用英文逗号隔开 ",")
+    value: localhost:6379
+
+  - name: redisPassword
+    # Redis 连接密码
+    value: ""
+
+  - name: actorStateStore
+    # 是否将此状态存储给 Actor 使用。 默认值为 "false"
+    value: "true"

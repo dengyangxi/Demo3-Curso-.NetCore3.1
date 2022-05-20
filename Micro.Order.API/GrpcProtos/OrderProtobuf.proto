@@ -1,0 +1,94 @@
+// *.proto 是一个协议缓冲区文件，用来  描述 Grpc 消息 和 服务
+
+// 语法结构版本: proto3
+syntax = "proto3";
+
+// 命名空间
+option csharp_namespace = "Micro.Order.API.GrpcProtos";
+
+// 包名称
+package OrderProtos;
+
+ // 房间对象
+ message RoomInfo
+ {
+	 //房间号
+	  string RmNo=1;
+	// 房型
+	  string RmType=2;
+	
+ }
+
+  // 订单对象
+ message OrderInfo
+ {
+	  //客人手机号
+	string GuestMobile =1;
+	//客人姓名
+	string GuestName=2;
+	//订单号
+	string OrderID =3;
+	//房间信息
+	repeated  RoomInfo roomInfo= 4;
+ }
+
+
+message GetOrderResponse {
+  OrderInfo Data=1;
+   bool IsError = 2;
+   string Msg =3;
+   int32  Code =4;
+
+}
+
+// 定义缓冲区消息
+message GetOrderRequest{
+	 // 订单号
+	 string OrderID=1;
+	 // 酒店编号
+	 string HotelCd=2 ;
+	
+ }
+  
+
+ 
+
+
+
+ //家里有条件的可以访问官网： 
+//		https://developers.google.com/protocol-buffers/docs/proto3 
+// C# ：		https://developers.google.com/protocol-buffers/docs/csharptutorial
+// Java :		https://developers.google.com/protocol-buffers/docs/javatutorial
+
+// 修饰符：
+//required: 必须赋值的字符  (必填字段)
+//optional: 可有可无的字段，可以使用[default = xxx]配置默认值
+//repeated: 可重复变长字段，类似数组  List  [] 
+
+//================ 数据类型 对应表 （proto --- C# --- Java ）================
+//  .proto类型		|	C#类型		|		Java类型
+//----------------------------------------------------
+//	double				double				double
+//	float				float				float
+//	int32				int					int
+//	int64				long				long
+//	uint32				uint				int
+//	uint64				ulong				long
+//	sint32				int					int
+//	sint64				long				long
+//	fixed32				uint				int
+//	fixed64				ulong				long
+//	sfixed32			int					int
+//	sfixed64			long				long
+//	bool				bool				boolean
+//	string				string				String
+//	bytes				ByteString			ByteString
+
+
+//默认值：
+// string类型,默认值是空字符串,注意不是null
+// bytes类型,默认值是空bytes
+// bool类型，默认值是false
+// 数字类型,默认值是0
+// 枚举类型,默认值是第一个枚举值,即0 
+ 

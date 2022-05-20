@@ -1,4 +1,5 @@
-﻿using Micro.Hotel.API.Common;
+﻿
+using Micro.Common.Library.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 

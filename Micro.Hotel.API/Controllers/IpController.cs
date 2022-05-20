@@ -2,42 +2,54 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text.Json;
-using Micro.Hotel.API.Common;
+using Micro.Common.Library;
 
 namespace Micro.Hotel.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IpController : ControllerBase
+    public class IpController : MicroBaseAPIController
     {
-        public ActionResult Get()
+
+        /// <summary>
+        /// 获取 服务器(容器)的IP地址
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetIP")]
+        public ActionResult GetIP()
         {
             var ip = System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()
                 .Select(p => p.GetIPProperties())
                 .SelectMany(p => p.UnicastAddresses)
                 .Where(p => p.Address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork && !System.Net.IPAddress.IsLoopback(p.Address))
                 .FirstOrDefault()?.Address.ToString();
-
-            return Ok(new List<string> { ip ?? "IP获取失败" });
+            if (ip is null)
+            {
+                //未能获取到IP地址
+                return Failed<string>("未能获取到服务器(容器)的IP地址");
+            }
+            //成功 获取到服务器(容器)的IP地址
+            return Success(ip);
         }
 
+
+        /// <summary>
+        /// 获取 服务器(容器) 系统基本信息
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Route("Hello")]
-        public ActionResult Hello()
+        [Route("SystemInfo")]
+        public ActionResult SystemInfo()
         {
             var model = ServerInformation();
 
-            //  var json = Newtonsoft.Json.Linq.JValue.Parse(JsonConvert.SerializeObject(model)).ToString(Newtonsoft.Json.Formatting.Indented);
+            return Success(model);
 
-            //var options = new JsonSerializerOptions
-            //{
-            //    WriteIndented = true,
-            //    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            //};
-            //var json = JsonSerializer.Serialize(model, options);
-
-            return Ok(model.ToJsonFormat());
+          //  return Ok(model.ToJsonFormat());
         }
+
+
         /// <summary>
         /// 获取服务器信息
         /// </summary>
@@ -101,7 +113,7 @@ namespace Micro.Hotel.API.Controllers
 
             public string? 站点名称 { get; set; }
 
-          
+
         }
     }
 }
