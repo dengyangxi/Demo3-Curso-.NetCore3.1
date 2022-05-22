@@ -18,28 +18,43 @@ namespace Micro.Common.Library.InterfaceActor
     public interface IWorkFlowActor : IActor
     {
         /// <summary>
-        /// 审批
+        ///  订单退款 自动审批流程
         /// </summary>
         /// <returns></returns>
-        Task<bool> Approve();
+        Task<BaseModel<bool>> OrderRefundApprove();
+
+
+        #region Timer  
+
         /// <summary>
-        /// 注册
+        /// 创建 Timer Actor
         /// </summary>
         /// <returns></returns>
         Task RegisterTimer();
         /// <summary>
-        /// 注销
+        /// 注销 Timer Actor
         /// </summary>
         /// <returns></returns>
         Task UnregisterTimer();
+
+        #endregion
+
+
+        #region  Reminder
+
         /// <summary>
-        /// 提醒
+        ///  创建 Reminder Actor
         /// </summary>
         /// <returns></returns>
         Task RegisterReminder();
 
-        // 取消提醒
+        /// <summary>
+        /// 注销 Reminder Actor
+        /// </summary>
+        /// <returns></returns>
         Task UnregisterReminder();
+
+        #endregion
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc; 
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Micro.Common.Library
 {
@@ -48,6 +48,19 @@ namespace Micro.Common.Library
             });
         }
 
+
+
+        /// <summary>
+        /// 返回结果
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        [NonAction]
+        public OkObjectResult Result<T>(BaseModel<T> obj)
+        {
+            return Ok(obj);
+        }
         #endregion 
     }
 }

@@ -1,11 +1,11 @@
-using Micro.Common.Library; 
+using Micro.Common.Library;
 using NLog;
 using NLog.Web;
 using System.Text;
 
 
 //var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-   
+
 //logger.Debug("program init main ...初始化...ing ");
 //logger.Error("program init main ...初始化...ing ");
 //logger.Warn("program init main ...初始化...ing ");
@@ -92,6 +92,14 @@ try
     //启动跨域策略
     builder.Services.AddCors();
 
+     
+    //builder.Services.AddActors(options =>
+    //{
+    //    options.Actors.RegisterActor<WorkflowActor>();
+    //});
+
+
+
     //加载编码 字符串格式
     Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
@@ -126,24 +134,30 @@ try
         context.Request.EnableBuffering();
         return next();
     });
+
     // 开启订阅
     app.MapSubscribeHandler();
 
+
+    // 将Dapr的 Actors映射到管道 Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.
+    // app.MapActorsHandlers();
+
+    // 将GRPC 服务 映射到管道 ，暴露GRPC服务
+    // 提供GRPC 服务的api里面注册， OrderAPI提供了GRPC接口给 HotelAPI调用。  （HotelAPI 未对外提供GRPC服务，因这里不需要注册）
     //point.MapGrpcService<xxxxGrpc服务类>();
     // app.MapGrpcService<>
 
     app.Urls.Add("http://localhost:5005");
 
 
-
-    app.Run(); 
+    app.Run();
 
 
 }
 catch (Exception exception)
 {
     // NLog: catch setup errors
-  //  logger.Error(exception, "Stopped program because of exception。 由于异常而停止了程序");
+    //  logger.Error(exception, "Stopped program because of exception。 由于异常而停止了程序");
 
     throw;
 }

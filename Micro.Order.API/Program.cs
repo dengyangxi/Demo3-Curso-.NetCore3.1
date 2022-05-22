@@ -1,7 +1,8 @@
 using System.Net;
 using System.Text;
 using Micro.Common.Library;
-using Micro.Order.API.OrderService;
+using Micro.Order.API.Actors;
+using Micro.Order.API.OrderService; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,14 @@ builder.Services.AddSingleton(new Appsettings(basePath));
 builder.Services.AddCors();
 
 
+
+builder.Services.AddActors(options =>
+{
+    options.Actors.RegisterActor<WorkflowActor>();
+});
+
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -70,7 +79,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-app.Urls.Add("https://localhost:5006");
+
 
 app.UseHttpsRedirection();
 
@@ -85,6 +94,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+// 将Dapr的 Actors映射到管道 Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.
+app.MapActorsHandlers();
+
+
 //将 订单服务 映射到 Grpc 服务，暴露终结点 Grpc Service Endpoint 。
 //      IEndpointRouteBuilder  GrpcServiceEndpointConventionBuilder 与 服务关联。
 app.MapGrpcService<OrderService>();
@@ -98,9 +112,11 @@ app.Use((context, next) =>
     return next();
 });
 
+
+
 // 开启订阅
 app.MapSubscribeHandler();
 
-//app.Urls.Add("https://localhost:5006");
+app.Urls.Add("http://localhost:5006");
 
 app.Run();

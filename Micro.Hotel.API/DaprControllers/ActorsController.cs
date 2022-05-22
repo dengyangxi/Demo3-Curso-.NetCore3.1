@@ -47,52 +47,93 @@ namespace Micro.Hotel.API.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ActorsClientController : MicroBaseAPIController
+    public class ActorsController : MicroBaseAPIController
     {
-        [HttpGet("{orderId}")]
-        public async Task<ActionResult> ApproveAsync(string orderId)
-        {
 
-            var actorId = new ActorId("actorprifix-" + orderId);
+
+        /*
+            orderapi||OrderRefundWorkflowActor||actor-id-1||actor-id-1
+            <app-id>||<actor-type>||<actor-id>||<actor-id>
+         */
+
+        /// <summary>
+        /// 提交一个审批流程-actor模型 并发控制
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        [HttpGet("{orderId}")]
+        public async Task<ActionResult> OrderRefundApproveAsync(string orderId)
+        {
+            try
+            {
+                //初始化 Actor ID
+                var actorId = new ActorId($"actor-id-{orderId}");   //order-refund-
+                //创建一个订单退款的 Actor 模型
+                var proxy = ActorProxy.Create<IWorkFlowActor>
+                                                    (
+                                                        actorId,            //ActorId
+                                                        "WorkflowActor"     //Actor 实现的类型。  （一般填写类名称。  xxx.cs）
+                                                    );
+
+                var result = await proxy.OrderRefundApprove();
+                //返回结果
+                return Result(result);
+
+            }
+            catch (Exception ex)
+            {
+                return Failed<string>(ex.Message, 500);
+            }
+        }
+
+        #region Reminder  
+
+        [HttpGet("Reminder/{orderId}")]
+        public async Task<ActionResult> ReminderAsync(string orderId)
+        {
+            //初始化 Actor ID
+            var actorId = new ActorId("reminder-actor-id-" + orderId);
+            //创建一个Reminder的 Actor 模型
             var proxy = ActorProxy.Create<IWorkFlowActor>(actorId, "WorkflowActor");
 
-            return Ok(await proxy.Approve());
+            await proxy.RegisterReminder();
+
+            return Success("OK");
         }
+
+        [HttpGet("UnRegist/Reminder/{orderId}")]
+        public async Task<ActionResult> UnregistReminderAsync(string orderId)
+        {
+            var actorId = new ActorId("reminder-actor-id-" + orderId);
+            var proxy = ActorProxy.Create<IWorkFlowActor>(actorId, "WorkflowActor");
+            await proxy.UnregisterReminder();
+            return Success("OK");
+        }
+
+        #endregion
+
+        #region Timer  
 
         [HttpGet("timer/{orderId}")]
         public async Task<ActionResult> TimerAsync(string orderId)
         {
-            var actorId = new ActorId("actorprifix-" + orderId);
+            var actorId = new ActorId("timer-actor-id-" + orderId);
             var proxy = ActorProxy.Create<IWorkFlowActor>(actorId, "WorkflowActor");
             await proxy.RegisterTimer();
-            return Ok("done");
+            return Success("OK");
         }
 
         [HttpGet("unregist/timer/{orderId}")]
         public async Task<ActionResult> UnregistTimerAsync(string orderId)
         {
-            var actorId = new ActorId("actorprifix-" + orderId);
+            var actorId = new ActorId("timer-actor-id-" + orderId);
             var proxy = ActorProxy.Create<IWorkFlowActor>(actorId, "WorkflowActor");
             await proxy.UnregisterTimer();
-            return Ok("done");
+            return Success("OK");
         }
+        #endregion
 
-        [HttpGet("reminder/{orderId}")]
-        public async Task<ActionResult> ReminderAsync(string orderId)
-        {
-            var actorId = new ActorId("actorprifix-" + orderId);
-            var proxy = ActorProxy.Create<IWorkFlowActor>(actorId, "WorkflowActor");
-            await proxy.RegisterReminder();
-            return Ok("done");
-        }
 
-        [HttpGet("unregist/reminder/{orderId}")]
-        public async Task<ActionResult> UnregistReminderAsync(string orderId)
-        {
-            var actorId = new ActorId("actorprifix-" + orderId);
-            var proxy = ActorProxy.Create<IWorkFlowActor>(actorId, "WorkflowActor");
-            await proxy.UnregisterReminder();
-            return Ok("done");
-        }
+
     }
 }

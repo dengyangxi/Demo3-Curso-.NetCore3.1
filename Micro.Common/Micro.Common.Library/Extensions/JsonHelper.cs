@@ -51,6 +51,9 @@ namespace Micro.Common.Library.Extensions
         /// <returns></returns>
         public static string ToJson(this object model)
         {
+            if (model is null) {
+                return "";
+            }
             return JsonSerializer.Serialize(model);
 
         }

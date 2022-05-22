@@ -8,7 +8,7 @@
       "sslPort": 44320
     },
     //开启https
-    "useSSL": true
+    "useSSL": false
   },
   "profiles": {
     "Micro.Hotel.API": {
@@ -18,7 +18,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:5005;http://localhost:5005",
+      "applicationUrl": "http://localhost:5005",
       "dotnetRunMessages": true
     },
     "IIS Express": {
