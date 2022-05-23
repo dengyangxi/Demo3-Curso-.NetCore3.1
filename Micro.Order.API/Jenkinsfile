@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env groovy
+#!/usr/bin/env groovy
 
 @Library('share@master') _
 
