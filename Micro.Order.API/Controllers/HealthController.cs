@@ -2,6 +2,11 @@
 
 namespace Micro.Order.API.Controllers
 {
+
+    /// <summary>
+    /// 提供 k8s pod 监控检查
+    ///     请勿随意调整
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class HealthController : ControllerBase

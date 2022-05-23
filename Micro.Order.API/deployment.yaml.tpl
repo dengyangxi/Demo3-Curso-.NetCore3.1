@@ -57,7 +57,7 @@ spec:
           #通过http方式检查监控状态
           httpGet:
                #检查方法
-               path: /Hotel/Index
+               path: /Health/Index
                #检查端口
                port: {{ServicePort}}
 ---
