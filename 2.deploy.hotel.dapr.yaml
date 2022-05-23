@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotelapi-dapr
+  namespace: homeinns-pms
+  labels:
+    app: dapr-label-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hotelapi-label-dapr
+  template:
+    metadata:
+      namespace: homeinns-pms
+      labels:
+        app: hotelapi-label-dapr
+      # dapr 注解，更多注解请参考：  https://docs.dapr.io/reference/arguments-annotations-overview/ 
+      annotations:
+        # dapr.io/enabled注解监视新的 Pod，并在 Pod 中注入带有daprd进程的容器
+        dapr.io/enabled: "true"
+        # dapr 的app-id 名字
+        dapr.io/app-id: "hotelapi"
+        # dapr 边车 端口号
+        dapr.io/app-port: "3500"
+        # 可观测性： https://docs.dapr.io/zh-hans/concepts/observability-concept/
+        # dapr 分布式追踪： https://docs.dapr.io/zh-hans/operations/monitoring/tracing/setup-tracing/ 
+        # value 需要和 追踪的名字对应。Configuration  metadata: name: tracing 。
+        #dapr.io/config: "tracing"
+    spec:
+      containers:
+      # 容器名字
+      - name: hotelapi
+        # imagePullPolicy： Always 总是拉取镜像 /  Never  只使用本地镜像  / IfNotPresent 优先本地，没有则拉取
+        imagePullPolicy: Always
+        # 镜像地址
+        image: registry.cn-hangzhou.aliyuncs.com/yxdeng/dyx_image:hotel-api-pod
+        ports:
+        # 容器暴露端口
+        - containerPort: 5005
+
+        # 容器监控检查  http/tcp 
+        #livenessProbe:
+        #   #通过http方式检查监控状态
+        #   httpGet:
+        #         #检查方法
+        #         path: /Hotel/Index
+        #         #检查端口
+        #         port: 5005
+        #   

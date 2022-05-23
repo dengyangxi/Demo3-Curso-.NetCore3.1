@@ -14,6 +14,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Micro.Public.API", "Micro.Public.API\Micro.Public.API.csproj", "{F4EED9C1-E3E8-4C1B-B520-898CC9759656}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S.Yaml", "K8S.Yaml", "{9DB1F132-CB6B-434F-A1AD-451C6D2979B5}"
+	ProjectSection(SolutionItems) = preProject
+		3.service.all.pod.dapr.yaml = 3.service.all.pod.dapr.yaml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.pod", "1.pod", "{922BF130-AFED-4123-A648-4F076062C75D}"
 	ProjectSection(SolutionItems) = preProject
@@ -151,6 +154,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.VirtualActors", "6.Virtua
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapr.Self.Hosted.Yaml", "Dapr.Self.Hosted.Yaml", "{EC097347-5437-4C02-B0F7-5906D502AE76}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.k8s-dapr", "8.k8s-dapr", "{ACF477EF-22D4-4D84-82C4-16A1F652644E}"
+	ProjectSection(SolutionItems) = preProject
+		3.service.all.pod.dapr.yaml = 3.service.all.pod.dapr.yaml
+		2.deploy.hotel.dapr.yaml = 2.deploy.hotel.dapr.yaml
+		1.deploy.order.dapr.yaml = 1.deploy.order.dapr.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.OpenTelemetry", "7.OpenTelemetry", "{420BC4F1-EC92-4D65-8270-2AB96AA07DD4}"
+	ProjectSection(SolutionItems) = preProject
+		1.jaeger-operator.yaml = 1.jaeger-operator.yaml
+		1.jaeger.dapr.yaml = 1.jaeger.dapr.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -204,6 +220,8 @@ Global
 		{4B156D94-04F9-4A90-9360-9E9D75C41A1D} = {1B728591-8028-4023-BB37-62BA360EFEB9}
 		{A113AA4A-761B-4CD4-932D-F26C3B2171A2} = {1B728591-8028-4023-BB37-62BA360EFEB9}
 		{DDE8EC2C-51A9-4E7B-B370-D51C34645048} = {1B728591-8028-4023-BB37-62BA360EFEB9}
+		{ACF477EF-22D4-4D84-82C4-16A1F652644E} = {1B728591-8028-4023-BB37-62BA360EFEB9}
+		{420BC4F1-EC92-4D65-8270-2AB96AA07DD4} = {1B728591-8028-4023-BB37-62BA360EFEB9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}

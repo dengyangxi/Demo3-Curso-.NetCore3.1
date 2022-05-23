@@ -1,4 +1,5 @@
 ﻿
+using Micro.Common.Library;
 using Micro.Common.Library.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -7,7 +8,7 @@ namespace Micro.Hotel.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HotelController : ControllerBase
+    public class HotelController : MicroBaseAPIController
     {
 
         private readonly ILogger<HotelController> _logger;
@@ -27,9 +28,9 @@ namespace Micro.Hotel.API.Controllers
         [HttpGet]
         [Route("Index")]
         public IActionResult Index()
-        {
-
-            return Ok(new { Data = "结果集..ing", IsError = false, Msg = "请求成功, Hotel Index" });
+        { 
+            return Success("结果集..ing", "请求成功, Hotel Index");
+     
         }
 
 

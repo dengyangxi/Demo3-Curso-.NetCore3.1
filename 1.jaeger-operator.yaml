@@ -1,0 +1,52 @@
+# 1.  创建 Secret 提供管理 es 的密码
+#           kubectl create secret generic jaeger-secret --from-literal=ES_USERNAME='pms-es' --from-literal=ES_PASSWORD='homeinns' -n homeinns-pms
+
+# 2. 安装 Jaeger
+#           helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
+#           helm install jaeger-operator jaegertracing/jaeger-operator
+#           kubectl apply -f 1.jaeger-operator.yaml    # 此文件，可以根据时间需求修改
+
+# 3. 等待Jaeger启动并运行
+#           kubectl wait deploy --selector app.kubernetes.io/name=jaeger --for=condition=available
+
+
+apiVersion: jaegertracing.io/v1
+kind: "Jaeger"
+metadata:
+  name: jaeger
+  namespace: homeinns-pms
+spec:
+  # 部署策略 
+  strategy: production
+  query:
+    options:
+      #日志等级
+      log-level: info
+      query:
+        # url路径
+        base-path: /jaeger
+  collector:
+    #最大副本限制
+    maxReplicas: 2
+    #资源限制
+    resources:
+      limits:
+        cpu: 200m
+        memory: 300Mi
+  storage:
+    #持久化-组件
+    type: elasticsearch
+    esIndexCleaner:
+      # 打开和关闭作业部署
+      enabled: false
+      # 删除记录前等待的天数
+      numberOfDays: 14
+      # cron 表达式
+      schedule: "55 23 * * *"
+      # es镜像仓储
+      image: jaegertracing/jaeger-es-index-cleaner
+    # es秘钥
+    secretName: jaeger-secret
+    options:
+      es:
+        server-urls: http://elasticsearch:9200 

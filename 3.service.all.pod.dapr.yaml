@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dapr-all-pod-service
+  namespace: homeinns-pms
+spec:
+  selector:
+    app: dapr-label-deploy
+  ports:
+    - protocol: TCP
+      port: 3500
+      targetPort: 3500
