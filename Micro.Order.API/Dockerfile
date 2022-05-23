@@ -6,9 +6,10 @@ EXPOSE 5006
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Micro.Order.API.csproj", "./"]
-COPY ["Micro.Common.Library.csproj", "./"]
-RUN dotnet restore "./Micro.Order.API.csproj"
+#COPY ["Micro.Order.API.csproj", "./"]
+
+#RUN dotnet restore "./Micro.Order.API.csproj"
+RUN dotnet restore "Micro.Order.API.csproj"
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "Micro.Order.API.csproj" -c Release -o /app/build
