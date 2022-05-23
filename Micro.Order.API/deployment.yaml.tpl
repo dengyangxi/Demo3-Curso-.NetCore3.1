@@ -52,7 +52,14 @@ spec:
         ports:
         - containerPort: {{ServicePort}}
         imagePullPolicy: Always
-
+        # 容器监控检查  http/tcp 
+        livenessProbe:
+          #通过http方式检查监控状态
+          httpGet:
+               #检查方法
+               path: /Hotel/Index
+               #检查端口
+               port: {{ServicePort}}
 ---
 apiVersion: v1
 kind: Service

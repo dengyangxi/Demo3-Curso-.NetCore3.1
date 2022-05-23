@@ -35,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.service", "3.service", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.deployment", "2.deployment", "{AC641C69-2B69-4DE9-8F80-1E5E65226E2F}"
 	ProjectSection(SolutionItems) = preProject
+		0.deploy.yaml = 0.deploy.yaml
 		1.deploy.hotel.yaml = 1.deploy.hotel.yaml
 		2.deploy.hotel.container.yaml = 2.deploy.hotel.container.yaml
 	EndProjectSection

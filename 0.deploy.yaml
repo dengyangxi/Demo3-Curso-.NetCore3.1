@@ -1,0 +1,50 @@
+
+#查看 deploy描述
+kubectl describe deployment hotelapi-deployment -n homeinns-pms
+#查看 replicaSet 副本描述
+kubectl describe rs hotelapi-deployment-xxxxxx -n homeinns-pms
+#查看 Pod 描述
+kubectl describe pod hotelapi-deployment-xxxx -n homeinns-pms
+#查看 deploy 状态
+kubectl rollout status deployment/hotelapi-deployment -n homeinns-pms
+#查看 deploy 历史版本清单 
+kubectl rollout history deployment/hotelapi-deployment -n homeinns-pms
+#回滚 deploy到上一个版本
+kubectl rollout undo deployment/hotelapi-deployment -n homeinns-pms
+#回滚 deploy 指定版本
+kubectl rollout undo deployment/hotelapi-deployment -n homeinns-pms --to-revision=1
+#伸缩deploy副本数量
+kubectl scale deployment/hotelapi-deployment -n homeinns-pms --replicas=3
+#查看 deploy 详细yaml文件
+kubectl get deployment hotelapi-deployment -o yaml -n homeinns-pms
+
+
+#一、强制删除pod
+#解决方法：加参数 --force --grace-period=0，grace-period表示过渡存活期，默认30s，在删除POD之前允许POD慢慢终止其上的容器进程，从而优雅退出，0表示立即终止POD
+kubectl delete pod <your-pod-name> -n <name-space> --force --grace-period=0
+
+二、强制删除pv、pvc
+#直接删除k8s etcd数据库中的记录！
+kubectl patch pv xxx -p '{"metadata":{"finalizers":null}}'
+kubectl patch pvc xxx -p '{"metadata":{"finalizers":null}}'
+
+三、强制删除ns
+在尝试以下命令强制删除也不好使：
+kubectl delete ns <terminating-namespace> --force --grace-period=0
+#解决方法：
+#1）运行以下命令以查看处于“Terminating”状态的namespace：
+kubectl get namespaces
+#2）选择一个Terminating namespace，并查看namespace 中的finalizer。运行以下命令：
+kubectl get namespace <terminating-namespace> -o json >tmp.json
+#3）编辑tmp.josn，删除finalizers 字段的值
+ "spec": {    
+     # 从此行开始删除
+    "finalizers": []
+     # 删到此行
+  }
+#4）开启proxy
+kubectl proxy --port=9999   #执行该命令后，当前终端会被卡住...
+#5) 请开启新窗口
+curl -k -H "Content-Type: application/json" -X PUT --data-binary @tmp.json http://127.0.0.1:9999/api/v1/namespaces/<terminating-namespace>/finalize
+#5) 查看ns状态
+kubectl get namespaces
