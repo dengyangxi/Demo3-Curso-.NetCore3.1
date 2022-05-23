@@ -1,0 +1,8 @@
+﻿#!/usr/bin/env groovy
+
+# 引用共享库
+# 简单点说就是将一些通用的devops的yaml脚本 抽象出来，放在一个单独的地方。
+@Library('share@master') _
+
+# 执行构建
+run 'daprtest', 'hotelapi', './Micro.Hotel.API/', '5001', '31111', ['dev':'*/master', 'prod':'*/master']

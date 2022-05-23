@@ -156,15 +156,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapr.Self.Hosted.Yaml", "Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.k8s-dapr", "8.k8s-dapr", "{ACF477EF-22D4-4D84-82C4-16A1F652644E}"
 	ProjectSection(SolutionItems) = preProject
-		3.service.all.pod.dapr.yaml = 3.service.all.pod.dapr.yaml
-		2.deploy.hotel.dapr.yaml = 2.deploy.hotel.dapr.yaml
 		1.deploy.order.dapr.yaml = 1.deploy.order.dapr.yaml
+		2.deploy.hotel.dapr.yaml = 2.deploy.hotel.dapr.yaml
+		3.service.all.pod.dapr.yaml = 3.service.all.pod.dapr.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.OpenTelemetry", "7.OpenTelemetry", "{420BC4F1-EC92-4D65-8270-2AB96AA07DD4}"
 	ProjectSection(SolutionItems) = preProject
 		1.jaeger-operator.yaml = 1.jaeger-operator.yaml
 		1.jaeger.dapr.yaml = 1.jaeger.dapr.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jenkins.Share.Library", "Jenkins.Share.Library", "{B335671A-2D88-49DE-86A8-AF9290129067}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "vars", "vars", "{4C802E35-8FD8-4CA5-8E35-91CEC21B13A4}"
+	ProjectSection(SolutionItems) = preProject
+		Jenkins.Share.Library\vars\dockerImageBuild.groovy = Jenkins.Share.Library\vars\dockerImageBuild.groovy
+		Jenkins.Share.Library\vars\dockerLogin.groovy = Jenkins.Share.Library\vars\dockerLogin.groovy
+		Jenkins.Share.Library\vars\dockerPush.groovy = Jenkins.Share.Library\vars\dockerPush.groovy
+		Jenkins.Share.Library\vars\dockerTag.groovy = Jenkins.Share.Library\vars\dockerTag.groovy
+		Jenkins.Share.Library\vars\gitCheckOut.groovy = Jenkins.Share.Library\vars\gitCheckOut.groovy
+		Jenkins.Share.Library\vars\harborSecret.groovy = Jenkins.Share.Library\vars\harborSecret.groovy
+		Jenkins.Share.Library\vars\jmeterTest.groovy = Jenkins.Share.Library\vars\jmeterTest.groovy
+		Jenkins.Share.Library\vars\k8sCheckDeployStatus.groovy = Jenkins.Share.Library\vars\k8sCheckDeployStatus.groovy
+		Jenkins.Share.Library\vars\k8sDeploy.groovy = Jenkins.Share.Library\vars\k8sDeploy.groovy
+		Jenkins.Share.Library\vars\k8sGenerateYaml.groovy = Jenkins.Share.Library\vars\k8sGenerateYaml.groovy
+		Jenkins.Share.Library\vars\run.groovy = Jenkins.Share.Library\vars\run.groovy
 	EndProjectSection
 EndProject
 Global
@@ -222,6 +239,7 @@ Global
 		{DDE8EC2C-51A9-4E7B-B370-D51C34645048} = {1B728591-8028-4023-BB37-62BA360EFEB9}
 		{ACF477EF-22D4-4D84-82C4-16A1F652644E} = {1B728591-8028-4023-BB37-62BA360EFEB9}
 		{420BC4F1-EC92-4D65-8270-2AB96AA07DD4} = {1B728591-8028-4023-BB37-62BA360EFEB9}
+		{4C802E35-8FD8-4CA5-8E35-91CEC21B13A4} = {B335671A-2D88-49DE-86A8-AF9290129067}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}

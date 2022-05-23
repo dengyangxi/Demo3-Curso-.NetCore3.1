@@ -1,0 +1,6 @@
+﻿#!/usr/bin/env groovy
+
+
+@Library('share@master') _
+
+run 'daprtest', 'orderapi', './Micro.Order.API/', '5001', '31111', ['dev':'*/master', 'prod':'*/master']
