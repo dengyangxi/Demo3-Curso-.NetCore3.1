@@ -50,10 +50,10 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
           <stringProp name="HTTPSampler.domain">192.168.10.129</stringProp>
-          <stringProp name="HTTPSampler.port">31111</stringProp>
+          <stringProp name="HTTPSampler.port">31116</stringProp>
           <stringProp name="HTTPSampler.protocol">http</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/api/dapr/ip</stringProp>
+          <stringProp name="HTTPSampler.path">/api/ip/GetIP</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
