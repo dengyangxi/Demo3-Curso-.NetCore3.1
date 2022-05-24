@@ -19,6 +19,22 @@ kubectl scale deployment/hotelapi-deployment -n homeinns-pms --replicas=3
 kubectl get deployment hotelapi-deployment -o yaml -n homeinns-pms
 
 
+
+#用journalctl查看日志非常管用
+
+journalctl -u kube-scheduler
+journalctl -u kubelet
+journalctl -u kube-apiserver
+journalctl -u kubelet |tail
+
+journalctl -xe
+
+
+#用docker查看日志
+docker logs c36c56e4cfa3  (容器id)
+
+
+
 #一、强制删除pod
 #解决方法：加参数 --force --grace-period=0，grace-period表示过渡存活期，默认30s，在删除POD之前允许POD慢慢终止其上的容器进程，从而优雅退出，0表示立即终止POD
 kubectl delete pod <your-pod-name> -n <name-space> --force --grace-period=0
