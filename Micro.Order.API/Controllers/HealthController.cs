@@ -21,7 +21,7 @@ namespace Micro.Order.API.Controllers
         {
             return Ok();
         }
-
+        [HttpGet("Get")]
         public IActionResult Get()
         {
             return Ok();

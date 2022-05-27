@@ -15,7 +15,7 @@ namespace Micro.Hotel.API.Controllers
         {
             return Ok();
         }
-
+        [HttpGet("Get")]
         public IActionResult Get()
         {
             return Ok();
