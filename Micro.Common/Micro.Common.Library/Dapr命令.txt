@@ -29,10 +29,11 @@ dapr run --dapr-http-port 3501 --app-port 5006 --app-id orderapi  --app-protocol
 
 
 
-//调试
+//调试本机dapr
 daprd -dapr-http-port 3500 -app-port 5005 -app-id hotelapi -placement-host-address localhost:6050 -components-path C:\Users\Dyx\.dapr\components
 daprd -dapr-http-port 3501 -app-port 5006 -app-id orderapi -placement-host-address localhost:6050 -components-path C:\Users\Dyx\.dapr\components
-
+//调试k8s dapr
+https://docs.dapr.io/developing-applications/debugging/debug-k8s/debug-daprd/
 
 
 
