@@ -22,8 +22,14 @@
 *  13. 创建 RABC
 
 *  二 . Dapr yaml
-*  1.  ...敬请期待..ing
-
+*  1.  服务调用  ServiceInvocation
+*  2.  发布订阅（Pub/Sub）   PublishSubscribe
+*  3.  秘钥管理  SecretManagement
+*  4.  资源绑定（Input/Output） InputOutputBindings
+*  5.  状态管理  StateManagement
+*  6.  Actor模型 VirtualActors
+*  7.  远程遥测  OpenTelemetry
+&  8.  k8s中部署dapr应用
 
 *  三 . Micro.Hotel.API
 
