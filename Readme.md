@@ -29,7 +29,7 @@
 *  5.  状态管理  StateManagement
 *  6.  Actor模型 VirtualActors
 *  7.  远程遥测  OpenTelemetry
-&  8.  k8s中部署dapr应用
+*  8.  k8s中部署dapr应用
 
 *  三 . Micro.Hotel.API
 
