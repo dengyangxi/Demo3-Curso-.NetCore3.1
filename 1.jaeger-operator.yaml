@@ -10,6 +10,10 @@
 #           kubectl wait deploy --selector app.kubernetes.io/name=jaeger --for=condition=available
 
 
+#            开发测试环境安装：
+#            docker run -d --name=jaeger -p 6831:6831/udp -p 16686:16686 jaegertracing/all-in-one:latest
+#               访问：  http://localhost:16686/
+
 apiVersion: jaegertracing.io/v1
 kind: "Jaeger"
 metadata:

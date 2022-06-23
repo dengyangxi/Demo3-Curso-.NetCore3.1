@@ -68,4 +68,9 @@ rabbitmqctl list_users
  
 
 
+          jaeger 开发测试环境快速安装：
+           docker run -d --name=jaeger -p 6831:6831/udp -p 16686:16686 jaegertracing/all-in-one:latest
+               访问：  http://localhost:16686/
+
+
 docker run kafka
