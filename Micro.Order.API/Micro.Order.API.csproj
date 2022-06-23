@@ -28,9 +28,4 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Micro.Common\Micro.Common.Library\Micro.Common.Library.csproj" />
-		
-	</ItemGroup>
-
 </Project>
