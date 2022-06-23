@@ -45,10 +45,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Micro.Common\Micro.Common.Library\Micro.Common.Library.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Common\" />
 	</ItemGroup>
   
