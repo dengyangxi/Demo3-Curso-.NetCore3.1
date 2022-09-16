@@ -1,6 +1,6 @@
 ##  Micro.DotNet6.0.API + K8S + Dapr + DevOps  ##
 
-关心 dapr 性能问题的朋友，可以参考 ： https://daprperf.azurewebsites.net/  （每天都会跑 一份测试报告）
+关心 dapr 性能问题的朋友，可以参考 ： https://daprperf.azurewebsites.net/  （每天都会跑 一份测试报告，*可能需要代理才能访问*）
 
 
 
