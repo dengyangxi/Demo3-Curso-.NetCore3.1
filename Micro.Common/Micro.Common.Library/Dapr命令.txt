@@ -1,4 +1,4 @@
-﻿// 0. 直接通过边车方法
+// 0. 直接通过边车方法 
  http://localhost:3500/v1.0/invoke/<app-id>/method/<方法路径>
 
 // 1. (Http)启动   并注入 Dapr SidCar    Http
@@ -16,7 +16,7 @@ dapr run --dapr-http-port 3501 --app-port 5006 --app-id orderapi dotnet C:\Users
 
 
 
-// 2. (Grpc)启动   并注入 Dapr SidCar    Grpc 
+// 2. (Grpc)启动   并注入 Dapr SidCar    Grpc  
 //Grpc 通讯案例：
 dapr run --dapr-http-port 3500 --app-port 5005 --app-id hotelapi  dotnet .\bin\Debug\net6.0\Micro.Order.API.dll 
 
@@ -70,7 +70,7 @@ rabbitmqctl list_users
 
           jaeger 开发测试环境快速安装：
            docker run -d --name=jaeger -p 6831:6831/udp -p 16686:16686 jaegertracing/all-in-one:latest
-               访问：  http://localhost:16686/
+               访问：  http://localhost:16686/ 
 
 
 docker run kafka

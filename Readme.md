@@ -1,12 +1,12 @@
-##  Micro.DotNet6.0.API + K8S + Dapr + DevOps  ##
+##  Micro.DotNet6.0.API + K8S + Dapr + DevOps  ## 
 
-关心 dapr 性能问题的朋友，可以参考 ： https://daprperf.azurewebsites.net/  （每天都会跑 一份测试报告）
+关心 dapr 性能问题的朋友，可以参考 ： https://daprperf.azurewebsites.net/  （每天都会跑 一份测试报告，*可能需要代理才能访问*）
 
 
 
 *  你这瓜保熟吗 ？  大哥 我这瓜  肯定  保熟. .保熟。 您放心 ！~
 
-*  一 . K8S yaml
+*  一 . K8S yaml     (k8s 常用的Yaml 示例)
 *  1.  创建 Pod
 *  2.  创建 Deployment
 *  3.  创建 Service
@@ -21,7 +21,7 @@
 *  12. 创建 ServiceAccount
 *  13. 创建 RABC
 
-*  二 . Dapr yaml
+*  二 . Dapr yaml   （dapr 常用yaml 示例）
 *  1.  服务调用  ServiceInvocation
 *  2.  发布订阅（Pub/Sub）   PublishSubscribe
 *  3.  秘钥管理  SecretManagement
@@ -31,10 +31,10 @@
 *  7.  远程遥测  OpenTelemetry
 *  8.  k8s中部署dapr应用
 
-*  三 . Micro.Hotel.API
+*  三 . Micro.Hotel.API    （Demo 服务）
 
 
-*  四 . Micro.Order.API
+*  四 . Micro.Order.API   (Demo 服务)
 
 
 
