@@ -2,13 +2,14 @@
 
 namespace Micro.Common.Library
 {
+
     /// <summary>
     /// 微服务API 控制器 基类
     /// </summary>
     public class MicroBaseAPIController : ControllerBase
     {
-        #region API返回值基层
 
+        #region API返回值基层
         /// <summary>
         /// 定义一个成功返回对象
         /// </summary>
@@ -28,6 +29,7 @@ namespace Micro.Common.Library
             });
         }
 
+
         /// <summary>
         /// 返回一个失败对象
         /// </summary>
@@ -46,6 +48,8 @@ namespace Micro.Common.Library
             });
         }
 
+
+
         /// <summary>
         /// 返回结果
         /// </summary>
@@ -57,8 +61,6 @@ namespace Micro.Common.Library
         {
             return Ok(obj);
         }
-
-        #endregion API返回值基层
-
+        #endregion 
     }
 }

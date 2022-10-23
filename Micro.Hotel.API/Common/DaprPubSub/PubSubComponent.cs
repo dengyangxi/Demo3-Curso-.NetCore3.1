@@ -1,7 +1,15 @@
-﻿namespace Micro.Common.Library.DaprPubSub
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Micro.Common.Library.DaprPubSub
 {
+
+
     /// <summary>
-    /// PubSub 组件名称
+    /// PubSub 组件名称 
     /// </summary>
     public class PubSubComponent
     {
@@ -10,5 +18,7 @@
         ///     即： 1.redis-pubsub.yaml 文件内的： metadata: name: redis-pubsub-component
         /// </summary>
         public const string PubSubRedisComponentName = "redis-pubsub-component";
+          
     }
+
 }

@@ -1,4 +1,9 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Micro.Common.Library.Extensions
 {
@@ -21,6 +26,8 @@ namespace Micro.Common.Library.Extensions
             return json;
         }
 
+
+
         /// <summary>
         /// 将 Json字符串 转换成 Model 类型
         /// </summary>
@@ -29,10 +36,13 @@ namespace Micro.Common.Library.Extensions
         /// <returns></returns>
         public static T ToModel<T>(this string obj)
         {
+
 #pragma warning disable CS8603 // 可能返回 null 引用。
             return JsonSerializer.Deserialize<T>(obj);
 #pragma warning restore CS8603 // 可能返回 null 引用。
+
         }
+
 
         /// <summary>
         /// 转换成Json
@@ -41,11 +51,11 @@ namespace Micro.Common.Library.Extensions
         /// <returns></returns>
         public static string ToJson(this object model)
         {
-            if (model is null)
-            {
+            if (model is null) {
                 return "";
             }
             return JsonSerializer.Serialize(model);
+
         }
     }
 }

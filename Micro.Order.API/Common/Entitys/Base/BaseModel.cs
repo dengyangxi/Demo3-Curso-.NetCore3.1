@@ -1,10 +1,16 @@
-﻿namespace Micro.Common.Library
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Micro.Common.Library
 {
     /// <summary>
     /// 返回数据基础类型
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    /// T：结构  类型参数必须是值类型。可以指定除 Nullable 以外的任何值类型。有关更多信息，请参见使用可空类型（C# 编程指南）。
+    /// T：结构  类型参数必须是值类型。可以指定除 Nullable 以外的任何值类型。有关更多信息，请参见使用可空类型（C# 编程指南）。 
     /// T：类 类型参数必须是引用类型，包括任何类、接口、委托或数组类型。
     /// T：new ()类型参数必须具有无参数的公共构造函数。当与其他约束一起使用时，new () 约束必须最后指定。
     /// T：<基类名> 类型参数必须是指定的基类或派生自指定的基类。
@@ -27,7 +33,6 @@
         /// 消息
         /// </summary>
         public string Msg { get; set; } = string.Empty;
-
         /// <summary>
         /// 请求状态： 200 正常
         /// </summary>

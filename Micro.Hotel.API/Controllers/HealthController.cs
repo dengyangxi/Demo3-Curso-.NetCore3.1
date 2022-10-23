@@ -5,7 +5,7 @@ namespace Micro.Hotel.API.Controllers
     [Route("[controller]")]
     [ApiController]
     public class HealthController : ControllerBase
-    {
+    { 
         /// <summary>
         /// 心跳健康检查
         /// </summary>
@@ -15,7 +15,6 @@ namespace Micro.Hotel.API.Controllers
         {
             return Ok();
         }
-
         [HttpGet("Get")]
         public IActionResult Get()
         {

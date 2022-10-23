@@ -1,13 +1,14 @@
 ﻿using Dapr;
 using Dapr.Client;
+using Microsoft.AspNetCore.Mvc;
 using Micro.Common.Library;
 using Micro.Common.Library.DaprStateStore;
-using Microsoft.AspNetCore.Mvc;
+
 
 /*
  * Dapr :
-    CNCF云原生基金会：  https://www.cncf.io/projects/dapr/
-    Dapr源代码Github:   https://github.com/dapr/dapr
+    CNCF云原生基金会：  https://www.cncf.io/projects/dapr/ 
+    Dapr源代码Github:   https://github.com/dapr/dapr        
     Dapr官方中文文档：  https://docs.dapr.io/zh-hans/
 
     适用于 Go         的 Dapr SDK: https://github.com/dapr/go-sdk
@@ -23,46 +24,46 @@ using Microsoft.AspNetCore.Mvc;
 
 /*
  * 5. 状态管理 (State Management):
-        独立的状态管理，使用键/值对作为存储机制，可以轻松的使长时运行、高可用的有状态服务和无状态服务共同运行在您的应用程序中。
+        独立的状态管理，使用键/值对作为存储机制，可以轻松的使长时运行、高可用的有状态服务和无状态服务共同运行在您的应用程序中。 
         状态存储是可插拔的，目前支持使用Azure CosmosDB、 Azure SQL Server、 PostgreSQL,、AWS DynamoDB、Redis 作为状态存储介质。
  */
-
 namespace Micro.Hotel.API.DaprControllers
 {
-    /// <summary>
+
+    /// <summary> 
     /// 5. State Management         状态管理
-    ///
-    ///   Dapr : https://dapr.io/
+    /// 
+    ///   Dapr : https://dapr.io/  
     ///     1. Service Invocation       服务调用         https://docs.dapr.io/developing-applications/building-blocks/service-invocation/service-invocation-overview/
     ///     2. Publish & Subscribe      发布和订阅       https://docs.dapr.io/developing-applications/building-blocks/pubsub/pubsub-overview/
     ///     3. Secret Management        秘密管理         https://docs.dapr.io/developing-applications/building-blocks/secrets/secrets-overview/
     ///     4. Input/Output Bindings    输入/输出绑定    https://docs.dapr.io/developing-applications/building-blocks/bindings/bindings-overview/
     ///     5. State Management         状态管理         https://docs.dapr.io/developing-applications/building-blocks/state-management/state-management-overview/
     ///     6. Virtual Actors           Actor模型        https://docs.dapr.io/developing-applications/building-blocks/actors/actors-overview/
-    ///
+    ///     
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class StateController : MicroBaseAPIController
     {
-        #region 0. DI 注入对象
 
+        #region 0. DI 注入对象
         /// <summary>
         /// 日志对象
         /// </summary>
         private readonly ILogger<StateController> _logger;
 
         /// <summary>
-        ///   Dapr 边车客户端
+        ///   Dapr 边车客户端 
         ///       注： DaprClient 并非代码入侵试， 它只是将一些通用的http 的各种 请求封装成一个方法。
         ///            您也可以使用： DaprClient   发起 http / Grpc 请求
         /// </summary>
         private readonly DaprClient _daprClient;
 
-        #endregion 0. DI 注入对象
+        #endregion 
+
 
         #region 0. 构造函数
-
         /// <summary>
         /// 构造函数
         ///       DI—Dependency Injection  依赖注入
@@ -77,8 +78,10 @@ namespace Micro.Hotel.API.DaprControllers
             //Dapr 客户端
             _daprClient = daprClient;
         }
+        #endregion
 
-        #endregion 0. 构造函数
+
+
 
         /// <summary>
         /// 保存一个state值
@@ -125,8 +128,10 @@ namespace Micro.Hotel.API.DaprControllers
             return result ? Success($"ETag: {etag}, value :{value}") : Failed<string>($"Etag: {etag}, value :{value}");
         }
 
+
+
         /// <summary>
-        /// 获取一个值
+        /// 获取一个值 
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetOrderStatus")]
@@ -136,6 +141,7 @@ namespace Micro.Hotel.API.DaprControllers
             var result = await _daprClient.GetStateAsync<string>(
                                     StateComponent.StateRedisComponentName,      // 状态管理 组件 名称。即： 1.redis.statestore.yaml  metadata:  name: redis-statestore-component
                                     key);
+
 
             //将result转换成json
 
@@ -220,6 +226,7 @@ namespace Micro.Hotel.API.DaprControllers
         [HttpPost("DeleteStateList")]
         public async Task<ActionResult> DeleteStateListAsync(List<string> keyList)
         {
+
             //批量获取State ,
             var data = await _daprClient.GetBulkStateAsync(StateComponent.StateRedisComponentName, keyList, 10);
             var removeList = new List<BulkDeleteStateItem>();

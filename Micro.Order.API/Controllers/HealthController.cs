@@ -2,6 +2,7 @@
 
 namespace Micro.Order.API.Controllers
 {
+
     /// <summary>
     /// 提供 k8s pod 监控检查
     ///     请勿随意调整
@@ -10,6 +11,7 @@ namespace Micro.Order.API.Controllers
     [ApiController]
     public class HealthController : ControllerBase
     {
+
         /// <summary>
         /// 心跳健康检查
         /// </summary>
@@ -19,7 +21,6 @@ namespace Micro.Order.API.Controllers
         {
             return Ok();
         }
-
         [HttpGet("Get")]
         public IActionResult Get()
         {

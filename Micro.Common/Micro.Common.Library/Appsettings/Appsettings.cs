@@ -1,5 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Micro.Common.Library
 {
@@ -9,6 +14,7 @@ namespace Micro.Common.Library
     public class Appsettings
     {
         public static IConfiguration Configuration { get; set; }
+       
 
         public Appsettings(string contentPath)
         {
@@ -37,6 +43,7 @@ namespace Micro.Common.Library
         {
             try
             {
+
                 if (sections.Any())
                 {
                     return Configuration[string.Join(":", sections)];
@@ -61,6 +68,7 @@ namespace Micro.Common.Library
             return list;
         }
 
+
         /// <summary>
         /// 根据路径  configuration["App:Name"];
         /// </summary>
@@ -72,9 +80,10 @@ namespace Micro.Common.Library
             {
                 return Configuration[sectionsPath];
             }
-            catch (Exception) { }
+            catch (Exception ) { }
 
             return "";
+
         }
     }
 }
