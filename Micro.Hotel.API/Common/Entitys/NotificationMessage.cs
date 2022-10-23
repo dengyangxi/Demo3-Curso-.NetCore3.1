@@ -1,20 +1,11 @@
-﻿using Micro.Common.Library.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Micro.Common.Library.Entitys
+﻿namespace Micro.Common.Library.Entitys
 {
-
     /// <summary>
-    /// 消息通知  pub  sub 
+    /// 消息通知  pub  sub
     /// </summary>
     [Serializable]
     public class NotificationMessage
     {
-
         /// <summary>
         /// 酒店编号
         /// </summary>
@@ -25,12 +16,10 @@ namespace Micro.Common.Library.Entitys
         /// </summary>
         public string MsgType { get; set; } = string.Empty;
 
-
         /// <summary>
         /// 消息详细内容
         /// </summary>
         public string DataJson { get; set; } = string.Empty;
-
 
         /// <summary>
         /// 消息发布时间
@@ -39,8 +28,6 @@ namespace Micro.Common.Library.Entitys
 
         //可以根据自定义 其他字段ing.....
     }
-
-
 
     /// <summary>
     /// 消息基类
@@ -74,8 +61,5 @@ namespace Micro.Common.Library.Entitys
         //        return _dataModel;
         //    }
         //}
-
     }
-
-
 }

@@ -1,5 +1,4 @@
-﻿
-//使用Actor模型
+﻿//使用Actor模型
 using Dapr.Actors;
 
 //Actor模型是1973年提出的一个分布式并发编程模式
@@ -8,12 +7,11 @@ using Dapr.Actors;
 //在Actor模型中主角是actor，类似一种worker。Actor彼此之间直接发送消息，不需要经过什么中介，消息是异步发送和处理的。
 //在Actor模型中一切都是actor，所有逻辑或模块都可以看成是actor，通过不同Actor之间的消息传递实现模块之间的通信和交互。
 
-
 namespace Micro.Common.Library.InterfaceActor
 {
     /// <summary>
     ///  定义一个审批流程 的Actor模型
-    ///  
+    ///
     /// </summary>
     public interface IWorkFlowActor : IActor
     {
@@ -23,24 +21,23 @@ namespace Micro.Common.Library.InterfaceActor
         /// <returns></returns>
         Task<BaseModel<bool>> OrderRefundApprove();
 
-
-        #region Timer  
+        #region Timer
 
         /// <summary>
         /// 创建 Timer Actor
         /// </summary>
         /// <returns></returns>
         Task RegisterTimer();
+
         /// <summary>
         /// 注销 Timer Actor
         /// </summary>
         /// <returns></returns>
         Task UnregisterTimer();
 
-        #endregion
+        #endregion Timer
 
-
-        #region  Reminder
+        #region Reminder
 
         /// <summary>
         ///  创建 Reminder Actor
@@ -54,7 +51,6 @@ namespace Micro.Common.Library.InterfaceActor
         /// <returns></returns>
         Task UnregisterReminder();
 
-        #endregion
-
+        #endregion Reminder
     }
 }

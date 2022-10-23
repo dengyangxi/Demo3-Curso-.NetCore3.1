@@ -1,19 +1,16 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using Micro.Common.Library;
+﻿using Micro.Common.Library;
 using Micro.Common.Library.Entitys;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Micro.Order.API.Controllers
 {
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class OrderController : MicroBaseAPIController
     {
-
         private readonly ILogger<OrderController> _logger;
 
         /// <summary>
@@ -25,16 +22,12 @@ namespace Micro.Order.API.Controllers
             _logger = logger;
         }
 
-
-
         [HttpGet(Name = "Index")]
         [Route("Index")]
         public IActionResult Index()
         {
             return Success("来自 Micro.Order.API 结果集..ing", "请求成功, Micro.Order.API 微服务的 Order/Index 方法");
-
         }
-
 
         /// <summary>
         ///   获取订单详细信息
@@ -43,10 +36,8 @@ namespace Micro.Order.API.Controllers
         /// <param name="orderID">订单编号</param>
         /// <returns></returns>
         [HttpPost("GetOrder")]
-
         public IActionResult GetOrder(OrderInfoRequest request)
         {
-
             return Success<OrderInfoModel>(new OrderInfoModel()
             {
                 GuestMobile = "13888888888",
@@ -66,8 +57,6 @@ namespace Micro.Order.API.Controllers
             }, $"请求成功,用户需要获取订单{request.OrderID}的信息");
 
             //.ToJsonFormat()
-
         }
-
     }
 }

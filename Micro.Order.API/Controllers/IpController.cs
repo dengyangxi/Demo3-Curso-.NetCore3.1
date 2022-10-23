@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Runtime.InteropServices; 
-
-using Micro.Common.Library;
+﻿using Micro.Common.Library;
 using Micro.Common.Library.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Micro.Order.API.Controllers
 {
@@ -33,7 +32,6 @@ namespace Micro.Order.API.Controllers
             return Success(ip);
         }
 
-
         /// <summary>
         /// 获取 服务器(容器) 系统基本信息
         /// </summary>
@@ -42,10 +40,11 @@ namespace Micro.Order.API.Controllers
         [Route("SystemInfo")]
         public ActionResult SystemInfo()
         {
-            var model = ServerInformation(); 
+            var model = ServerInformation();
 
             return Ok(model.ToJsonFormat());
         }
+
         /// <summary>
         /// 获取服务器信息
         /// </summary>
@@ -84,7 +83,6 @@ namespace Micro.Order.API.Controllers
 
         private class ServerInformationModel
         {
-
             public string 服务器时间 { get; set; } = "";
             public string 占用总内存 { get; set; } = "";
 

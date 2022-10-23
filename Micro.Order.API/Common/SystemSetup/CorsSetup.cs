@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace Micro.Common.Library.SystemSetup
+﻿namespace Micro.Common.Library.SystemSetup
 {
     /// <summary>
     /// Cors 启动服务： 跨域策略
@@ -16,7 +14,6 @@ namespace Micro.Common.Library.SystemSetup
             {
                 if (!Appsettings.app(new string[] { "Startup", "Cors", "EnableAllIPs" }).ObjToBool())
                 {
-                   
                     c.AddPolicy(Appsettings.app(new string[] { "Startup", "Cors", "PolicyName" }),
 
                         policy =>
@@ -40,7 +37,6 @@ namespace Micro.Common.Library.SystemSetup
                             .AllowCredentials();
                         });
                 }
-
             });
         }
 

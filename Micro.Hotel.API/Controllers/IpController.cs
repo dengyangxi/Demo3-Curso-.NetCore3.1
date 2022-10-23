@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Micro.Common.Library;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Text.Json;
-using Micro.Common.Library;
 
 namespace Micro.Hotel.API.Controllers
 {
@@ -10,7 +9,6 @@ namespace Micro.Hotel.API.Controllers
     [ApiController]
     public class IpController : MicroBaseAPIController
     {
-
         /// <summary>
         /// 获取 服务器(容器)的IP地址
         /// </summary>
@@ -33,7 +31,6 @@ namespace Micro.Hotel.API.Controllers
             return Success(ip);
         }
 
-
         /// <summary>
         /// 获取 服务器(容器) 系统基本信息
         /// </summary>
@@ -46,9 +43,8 @@ namespace Micro.Hotel.API.Controllers
 
             return Success(model);
 
-          //  return Ok(model.ToJsonFormat());
+            //  return Ok(model.ToJsonFormat());
         }
-
 
         /// <summary>
         /// 获取服务器信息
@@ -88,7 +84,6 @@ namespace Micro.Hotel.API.Controllers
 
         private class ServerInformationModel
         {
-
             public string 服务器时间 { get; set; } = "";
             public string 占用总内存 { get; set; } = "";
 
@@ -112,8 +107,6 @@ namespace Micro.Hotel.API.Controllers
             public string[] 硬盘 { get; set; } = Array.Empty<string>();
 
             public string? 站点名称 { get; set; }
-
-
         }
     }
 }

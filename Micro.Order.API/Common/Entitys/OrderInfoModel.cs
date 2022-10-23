@@ -1,5 +1,4 @@
-﻿
-namespace Micro.Common.Library.Entitys
+﻿namespace Micro.Common.Library.Entitys
 {
     [Serializable]
     public class OrderInfoModel
@@ -8,14 +7,17 @@ namespace Micro.Common.Library.Entitys
         /// 客人手机号
         /// </summary>
         public string GuestMobile { get; set; } = string.Empty;
+
         /// <summary>
         /// 客人姓名
         /// </summary>
         public string GuestName { get; set; } = string.Empty;
+
         /// <summary>
         /// 订单号
         /// </summary>
         public string OrderID { get; set; } = string.Empty;
+
         /// <summary>
         /// 房间信息
         /// </summary>

@@ -1,8 +1,6 @@
-﻿
-using Micro.Common.Library;
+﻿using Micro.Common.Library;
 using Micro.Common.Library.Extensions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Micro.Hotel.API.Controllers
 {
@@ -10,7 +8,6 @@ namespace Micro.Hotel.API.Controllers
     [Route("[controller]")]
     public class HotelController : MicroBaseAPIController
     {
-
         private readonly ILogger<HotelController> _logger;
 
         /// <summary>
@@ -22,24 +19,17 @@ namespace Micro.Hotel.API.Controllers
             _logger = logger;
         }
 
-
-
-
         [HttpGet]
         [Route("Index")]
         public IActionResult Index()
-        { 
+        {
             return Success("结果集..ing", "请求成功, Hotel Index");
-     
         }
-
 
         [HttpGet]
         [Route("GetHotel")]
-
         public IActionResult GetHotel(string hotelCd = "")
         {
-
             hotelCd = hotelCd ?? "021098";
 
             return Ok(
@@ -55,29 +45,20 @@ namespace Micro.Hotel.API.Controllers
                             Msg = $"请求成功,用户需要获取酒店{hotelCd}的信息"
                         }.ToJsonFormat()
                 );
-
         }
-
-
-
 
         [HttpGet]
         [Route("Log")]
         public IActionResult Log(string msg = "")
         {
-           
-
             // #TODU 业务日志
             _logger.LogInformation($"请求日志Info：{msg}");
             _logger.LogError($"请求日志Error：{msg}");
             _logger.LogWarning($"请求日志Warning：{msg}");
 
-
             //#TODU 业务代码
-
 
             return Ok(new { Data = "Log日志..ing", IsError = false, Msg = "请求成功, Hotel Log" });
         }
-
     }
 }

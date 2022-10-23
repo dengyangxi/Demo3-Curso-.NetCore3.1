@@ -1,8 +1,5 @@
 using Micro.Common.Library;
-using NLog;
-using NLog.Web;
 using System.Text;
-
 
 //var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
@@ -12,8 +9,6 @@ using System.Text;
 try
 {
     var builder = WebApplication.CreateBuilder(args);
-
-
 
     // 将服务添加到容器中。
     builder.Services.AddControllersWithViews();
@@ -26,7 +21,7 @@ try
     //logger.Debug("program init main ...初始化...ing ");
     //logger.Error("program init main ...初始化...ing ");
     //logger.Warn("program init main ...初始化...ing ");
-    //logger.Trace("program init main ...初始化...ing "); 
+    //logger.Trace("program init main ...初始化...ing ");
     //    // Enables HTTP/3
     //    listenOptions.Protocols = HttpProtocols.Http3;
     //    // Adds a TLS certificate to the endpoint
@@ -35,9 +30,8 @@ try
     //        httpsOptions.ServerCertificate = LoadCertificate();
     //    });
 
-
     // WebHost  设置 Kestrel Web 服务器
-    //   详情请参考官方文档： https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-6.0 
+    //   详情请参考官方文档： https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-6.0
     builder.WebHost.UseKestrel(webhost =>
         {
             //实现对特定端口的监控
@@ -45,7 +39,6 @@ try
 
             webhost.ConfigureHttpsDefaults(config =>
             {
-
                 //忽略SSL证书
                 //   config.ClientCertificateMode = Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.AllowCertificate;
             });
@@ -64,26 +57,21 @@ try
             //接收请求报头的超时时间，默认为30秒。
             webhost.Limits.RequestHeadersTimeout = TimeSpan.FromSeconds(35);  //修改成 35秒
 
-            // 响应缓冲区最大容量，默认值为65,536（64kb）。  
+            // 响应缓冲区最大容量，默认值为65,536（64kb）。
             webhost.Limits.MaxResponseBufferSize = (1024 * 100);  //修改成 100kb
 
-
             // 其他各种限制  . . . . . . . .
-
         });
 
-
-    // 注册： 控制器  和 注册  DAPR  
+    // 注册： 控制器  和 注册  DAPR
     builder.Services.AddControllers().AddDapr();
 
     // 注册： Grpc
     builder.Services.AddGrpc();
 
-
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-
 
     var basePath = AppContext.BaseDirectory;
 
@@ -92,13 +80,10 @@ try
     //启动跨域策略
     builder.Services.AddCors();
 
-     
     //builder.Services.AddActors(options =>
     //{
     //    options.Actors.RegisterActor<WorkflowActor>();
     //});
-
-
 
     //加载编码 字符串格式
     Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
@@ -120,12 +105,9 @@ try
 
     app.UseStaticFiles();
 
-
-
     app.UseAuthorization();
 
     app.MapControllers();
-
 
     //中间件委托添加到应用程序的请求管道中...
     app.Use((context, next) =>
@@ -138,7 +120,6 @@ try
     // 开启订阅
     app.MapSubscribeHandler();
 
-
     // 将Dapr的 Actors映射到管道 Microsoft.AspNetCore.Routing.IEndpointRouteBuilder.
     // app.MapActorsHandlers();
 
@@ -149,10 +130,7 @@ try
 
     app.Urls.Add("http://localhost:5005");
 
-
     app.Run();
-
-
 }
 catch (Exception exception)
 {

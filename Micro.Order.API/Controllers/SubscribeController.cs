@@ -9,7 +9,6 @@ using System.Text;
 
 namespace Micro.Order.API.Controller
 {
-
     /// <summary>
     /// 接受消息
     /// </summary>
@@ -17,7 +16,6 @@ namespace Micro.Order.API.Controller
     [ApiController]
     public class SubscribeController : MicroBaseAPIController
     {
-
         private readonly ILogger<OrderController> _logger;
 
         /// <summary>
@@ -28,7 +26,6 @@ namespace Micro.Order.API.Controller
         {
             _logger = logger;
         }
-
 
         /// <summary>
         /// 指定接受消息
@@ -51,8 +48,7 @@ namespace Micro.Order.API.Controller
             string content = Encoding.GetEncoding("gb2312").GetString(buffer);
 
             //将字符串转换成实体类
-           // var model = content.ToModel<BaseMessage<NotificationMessage>>();
-
+            // var model = content.ToModel<BaseMessage<NotificationMessage>>();
 
             //打印日志消息
             _logger.LogInformation($"==============================Micro.Order.API.SubscribeController   SubMessage 消息:==============================");
@@ -61,15 +57,11 @@ namespace Micro.Order.API.Controller
             _logger.LogInformation($"==============================Micro.Order.API.SubscribeController   SubMessage==============================");
 
             return Ok(content);
-
-
         }
 
-
-
         /// <summary>
-        /// 接收消息 （被动接受消息） 
-        /// </summary> 
+        /// 接收消息 （被动接受消息）
+        /// </summary>
         /// <returns></returns>
         [HttpPost("SubMessage")]
         public async Task<ActionResult> SubMessageAsync()
@@ -88,7 +80,6 @@ namespace Micro.Order.API.Controller
             //将字符串转换成实体类
             var model = content.ToModel<BaseMessage<NotificationMessage>>();
 
-
             //打印日志消息
             _logger.LogInformation($"==============================Micro.Order.API.SubscribeController   SubMessage 消息:==============================");
             _logger.LogError(model.ToJsonFormat());
@@ -96,6 +87,5 @@ namespace Micro.Order.API.Controller
 
             return Ok(content);
         }
-
     }
 }

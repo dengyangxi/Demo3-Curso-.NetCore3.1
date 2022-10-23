@@ -1,7 +1,4 @@
-using System.Net;
-
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container.
 
@@ -25,14 +22,11 @@ builder.WebHost.UseKestrel(webhost =>
     //接收请求报头的超时时间，默认为30秒。
     webhost.Limits.RequestHeadersTimeout = TimeSpan.FromSeconds(35);  //修改成 35秒
 
-    // 响应缓冲区最大容量，默认值为65,536（64kb）。  
+    // 响应缓冲区最大容量，默认值为65,536（64kb）。
     webhost.Limits.MaxResponseBufferSize = (1024 * 100);  //修改成 100kb
 
-
     // 其他各种限制  . . . . . . . .
-
 });
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -51,8 +45,5 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
-
-
 
 app.Run();

@@ -35,6 +35,7 @@ namespace Micro.Public.API.Controllers
 
             return Ok(json);
         }
+
         /// <summary>
         /// 获取服务器信息
         /// </summary>
@@ -73,7 +74,6 @@ namespace Micro.Public.API.Controllers
 
         private class ServerInformationModel
         {
-
             public string 服务器时间 { get; set; } = "";
             public string 占用总内存 { get; set; } = "";
 
