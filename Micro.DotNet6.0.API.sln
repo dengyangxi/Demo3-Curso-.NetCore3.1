@@ -181,6 +181,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.k8s-dapr", "8.k8s-dapr", 
 		Dapr.Yaml\8.k8s-dapr\8.2.deploy.hotel.dapr.yaml = Dapr.Yaml\8.k8s-dapr\8.2.deploy.hotel.dapr.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Micro.GateWay.Yapr", "Micro.GateWay.Yapr", "{1C271492-B47F-42FC-983B-D71C8247047B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Micro.GateWay.Yapr", "Micro.GateWay.Yapr\Micro.GateWay.Yapr\Micro.GateWay.Yapr.csproj", "{35A25D7B-96A1-4BBD-A5B8-364684C8325E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -199,6 +203,10 @@ Global
 		{81056D8F-BA38-4319-A92C-13357D317AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81056D8F-BA38-4319-A92C-13357D317AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81056D8F-BA38-4319-A92C-13357D317AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A25D7B-96A1-4BBD-A5B8-364684C8325E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A25D7B-96A1-4BBD-A5B8-364684C8325E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A25D7B-96A1-4BBD-A5B8-364684C8325E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A25D7B-96A1-4BBD-A5B8-364684C8325E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,6 +237,7 @@ Global
 		{9B6B2544-0E88-4A76-B38E-822727176ABD} = {05D51418-A347-4938-B699-8D6F90C50F7F}
 		{4276DF20-AE1A-48CC-A7D6-58DE682E8C8D} = {05D51418-A347-4938-B699-8D6F90C50F7F}
 		{E03CD5C6-8EEC-45EB-BD84-6393B7F5D4BD} = {05D51418-A347-4938-B699-8D6F90C50F7F}
+		{35A25D7B-96A1-4BBD-A5B8-364684C8325E} = {1C271492-B47F-42FC-983B-D71C8247047B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C247C2C8-6937-4E8E-8D00-5853EB8CDC7F}
