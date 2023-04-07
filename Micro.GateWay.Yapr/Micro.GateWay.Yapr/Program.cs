@@ -25,7 +25,7 @@ builder.WebHost.UseKestrel(webhost =>
 
 	//可升级连接（比如从HTTP升级到WebSocket）的最大并发数。如果设置为Null（默认值），意味着不作限制。
 	webhost.Limits.MaxConcurrentUpgradedConnections = null;
-
+	 
 	//请求主体最大字节数，默认值为30,000,000 字节（约28.6M）。如果设置为Null，意味着不作限制。
 	webhost.Limits.MaxRequestBodySize = (1024 * 100); //修改成 100kb
 
