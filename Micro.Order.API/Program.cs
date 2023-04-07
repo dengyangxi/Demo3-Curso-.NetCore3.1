@@ -2,9 +2,9 @@ using System.Net;
 using System.Text;
 using Micro.Common.Library;
 using Micro.Order.API.Actors;
-using Micro.Order.API.OrderService; 
-
-var builder = WebApplication.CreateBuilder(args);
+using Micro.Order.API.OrderService;
+// Furion 注入
+var builder = WebApplication.CreateBuilder(args).Inject();
 
 // Add services to the container.
 
@@ -43,8 +43,12 @@ builder.WebHost.UseKestrel(webhost =>
 });
 
 
-// 注册： 控制器  和 注册  DAPR  
-builder.Services.AddControllers().AddDapr();
+// 1. 注册： 控制器  和 注册  DAPR  
+// 2. 注册  Furion   AddInject
+builder.Services.AddControllers().AddDapr().AddInject();
+
+// 注册远程请求服务
+builder.Services.AddRemoteRequest();
 
 // 注册： Grpc
 builder.Services.AddGrpc();
@@ -91,6 +95,10 @@ app.UseSwaggerUI();
 //}
 
 app.UseAuthorization();
+
+
+//注册中间件  Furion 
+app.UseInject();
 
 app.MapControllers();
 

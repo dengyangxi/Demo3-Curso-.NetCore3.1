@@ -22,26 +22,26 @@
 
 	<ItemGroup>
 		<!-- 开始 -->
-		<PackageReference Include="Dapr.Actors" Version="1.7.0" />
-		<PackageReference Include="Dapr.Actors.AspNetCore" Version="1.7.0" />
-		<PackageReference Include="Dapr.AspNetCore" Version="1.7.0" />
-		<PackageReference Include="Dapr.Client" Version="1.7.0" />
-		<PackageReference Include="Dapr.Extensions.Configuration" Version="1.7.0" />
-		<PackageReference Include="Google.Protobuf" Version="3.20.1" />
-		<PackageReference Include="Grpc.AspNetCore" Version="2.46.0" />
-		<PackageReference Include="Grpc.Net.Client" Version="2.46.0" />
-		<PackageReference Include="Grpc.Tools" Version="2.46.1">
+		<PackageReference Include="Dapr.Actors" Version="1.10.0" />
+		<PackageReference Include="Dapr.Actors.AspNetCore" Version="1.10.0" />
+		<PackageReference Include="Dapr.AspNetCore" Version="1.10.0" />
+		<PackageReference Include="Dapr.Client" Version="1.10.0" />
+		<PackageReference Include="Dapr.Extensions.Configuration" Version="1.10.0" />
+		<PackageReference Include="Google.Protobuf" Version="3.22.1" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.52.0" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.52.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.53.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<Protobuf Include="GrpcProtos\OrderProtobuf.proto" GrpcServices="Client" />
 		<!-- 结束 -->
 		
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.15.1" />
-		<PackageReference Include="NLog" Version="5.0.0" />
-		<PackageReference Include="NLog.Extensions.Logging" Version="5.0.0" />
-		<PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+		<PackageReference Include="NLog" Version="5.1.3" />
+		<PackageReference Include="NLog.Extensions.Logging" Version="5.2.3" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="5.2.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
   
 
