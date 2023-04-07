@@ -36,7 +36,7 @@ builder.WebHost.UseKestrel(webhost =>
 	webhost.Limits.MaxResponseBufferSize = (1024 * 100);  //修改成 100kb
 
 
-	// 其他各种限制  . . . . . . . .
+	// 其他各种限制  . . . . . . . . 
 
 });
 
